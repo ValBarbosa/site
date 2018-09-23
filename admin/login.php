@@ -1,93 +1,69 @@
-<!-- REQUIRE(), SESSION_START() E ERROR_REPORTING(0) -->
-<?php
-    error_reporting(0);
-    require('config.php');
-    session_start();
-?>
-<!-- /REQUIRE() E SESSION_START() -->
-<?php
-    if (isset($_POST['usuario']) && isset($_POST['senha'])) {
+	<?php
+	session_start();
+	error_reporting();
+	if(!empty($_POST['user'])){
 
-        $sql_verificar_login_usuario = "SELECT * FROM users_admin WHERE usuario = '".$_POST['usuario']."' and senha = '".$_POST['senha']."'";
-        $query_verificar_login_usuario = mysqli_query($conexao, $sql_verificar_login_usuario);
+		require("config.php");
 
-        if (mysqli_num_rows($query_verificar_login_usuario) > 0) {
-            
-            $_SESSION['user'] = $_POST['usuario'];
-            header('location: index2.php');
+		$sql = "SELECT idadmin,usuario, senha FROM admin WHERE usuario = '".$_POST['user']. "' AND senha = '".$_POST['pass']."'";
 
-        } else {
+		$query = mysqli_query($conexao, $sql);
 
-            echo "<script>
-                    function ErroLogin(){
+		if(mysqli_num_rows($query) > 0){
+			$_SESSION['user'] = $_POST['user'];
+			header('location:index.php');
 
-                        document.getElementById('alerta').className = 'form-control alert alert-danger';
-                        document.getElementById('alerta').innerHTML = 'Usuário ou senha incorreto!';
-                        
-                    }
-                </script>";
-            
-        }
-
-    }
-?>
-<!-- /VERIFICAR LOGIN -->
+		}else{
+			$_SESSION['msg'] = "<div id='alert' class='alert alert-danger'>Usuário e/ou Senha incorretos!</div>";
+		}
+	}
+	?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
-    <!-- BOOTSTRAP 4 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <!-- FONTAWESOME -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"> 
-    <!-- OCULTAR/MOSTRA SENHA -->
-    <script>
-        function VeSenha() {
-            
-            var pass = document.getElementById('senha');
+	<meta charset="UTF-8">
+	<title>LOGIN</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$( "#alert" ).fadeOut(3000);
+		});
+	</script>
+	<style>
+		#form { width:400px; height: 500px }
+	</style>
+</head> 
+<body>
+	<div class="row" style="height: 100px">	
+		<div class="col-md-12 text-center">	
+			<label class="text-center" style="margin-top: 20px">
+				<?php echo $_SESSION['msg'];?>
+			</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+		<form method="post" id="form">
+		  <fieldset>
+		  <div class="form-group">
+		   	<legend>Login</legend>
+		  	<label for="email">Usuário</label>
+		    <input type="text" class="form-control" id="email" name="user">
+		  </div>
+		  <div class="form-group">
+		    <label for="pwd">Senha:</label>
+		    <input type="password" class="form-control" id="pwd" name="pass">
+		  </div>
+		  <button type="submit" class="btn btn-primary form-control">Entrar</button>
+		  </form>
+		  </fieldset>
 
-            if (pass.type == "password") {
-                
-                pass.type = "text";
-                document.getElementById('eye').className = 'far fa-eye-slash';
-
-            } else {
-
-                pass.type = "password";
-                document.getElementById('eye').className = 'far fa-eye';
-
-            }
-
-        }
-    </script>
-    <!-- /OCULTAR/MOSTRA SENHA -->
-</head>
-<body class="container-fluid" onload="ErroLogin()">
-    <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <form method="post">
-                <div class="form-group">
-                    <label for="usuario">User</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" placeholder="User" required>
-                </div>
-                <div class="form-group">
-                    <label for="senha">Password</label>
-                    <div class="input-group mb-2">
-                        <input type="password" class="form-control" id="senha" name="senha" placeholder="Password" required>
-                        <div class="input-group-text"><a onclick="VeSenha()"><i id="eye" class='far fa-eye'></i></a></div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <p class="form_control" id="alerta"></p>
-                </div>
-                <input class="btn btn-success" type="submit" value="Entrar">
-            </form>
-        </div>
-        <div class="col-md-3"></div>
-    </div>
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+	
 </body>
 </html>
