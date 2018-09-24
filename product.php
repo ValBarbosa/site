@@ -583,6 +583,49 @@ $caminho = "admin/dist/img/";
 }}
 					?>
 					<?php
+<<<<<<< HEAD
+=======
+					$sqlPesquisa = "SELECT * FROM produto,img WHERE nome LIKE '%".$_GET['pesquisa']."%' ORDER BY nome ASC";
+					$queryPesquisa = mysqli_query($conexao,$sqlPesquisa);
+					while ($pro = mysqli_fetch_assoc($queryPesquisa)) {
+					echo '
+					<div class="row" style="height:500px">
+						<div class="col-sm-6 col-lg-6 p-b-50">
+							<!-- Block2 -->
+							<div class="block2" style="width:300px; height:400px;">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+									<img style="width:300px; height:400px;" src="admin/image/'.$pro['image'].'" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
+
+										<div class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+												Adicionar
+											</button>
+										</div>
+									</div>
+								</div>
+                              <center>
+								<div class="block2-txt p-t-20">
+									<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
+										'.$pro['nome'].'
+									</a>
+
+									<span class="block2-price m-text6 p-r-5">
+										preço:'.$pro['preco'].'
+									</span>
+								</div> </center>
+							</div>
+						</div>
+						</div>
+';
+}
+>>>>>>> 25d44dedaf4209a8e950d9dc423f6a5a84be459e
 if (isset($_GET['page'])) {
 $sql = "SELECT * FROM produto,img WHERE produto.idproduto = img.idproduto";
  $query = mysqli_query($conexao, $sql);
