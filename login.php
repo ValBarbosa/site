@@ -3,9 +3,9 @@
 	error_reporting(0);
 	if(!empty($_POST['user'])){
 
-		require("config.php");
+		require("admin/config.php");
 
-		$sql = "SELECT idadmin,usuario, senha FROM admin WHERE usuario = '".$_POST['user']. "' AND senha = '".$_POST['pass']."'";
+		$sql = "SELECT id,usuario, senha FROM users_admin WHERE usuario = '".$_POST['user']. "' AND senha = '".$_POST['pass']."'";
 
 		$query = mysqli_query($conexao, $sql);
 
@@ -23,9 +23,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>LOGIN</title>
-	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="admin/bootstrap.min.css">
 	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-	<script type="text/javascript" src="bootstrap.min.js"></script>
+	<script type="text/javascript" src="admin/bootstrap.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			$( "#alert" ).fadeOut(3000);
@@ -46,7 +46,7 @@
 	<div class="row">
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
-		<form method="post" id="form">
+		<form method="get" id="form">
 		  <fieldset>
 		  <div class="form-group">
 		   	<legend>Login</legend>
@@ -57,7 +57,8 @@
 		    <label for="pwd">Senha:</label>
 		    <input type="password" class="form-control" id="pwd" name="pass">
 		  </div>
-		  <button type="submit" class="btn btn-primary form-control">Entrar</button>
+		  <button type="submit" class="btn btn-primary form-control">Entrar</button><br>
+		  <br><button type="submit" class="btn btn-primary form-control">Cadastrar</button>
 		  </form>
 		  </fieldset>
 

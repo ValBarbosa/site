@@ -88,7 +88,7 @@
 							</li>
 
 							<li>
-								<a href="product.php">Shop</a>
+								<a href="product.php?page=todos">Shop</a>
 							</li>
 
 							<li class="sale-noti">

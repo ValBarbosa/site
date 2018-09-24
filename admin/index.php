@@ -97,18 +97,18 @@ if (isset($_GET['sair'])) {
                 ?>
               </span>
             </a>
-            <ul class="dropdown-menu">
-              <li class="header"><?php
+            <ul class="dropdown-menu" style="width: 350px;">
+              <li style="width: 350px; color: #000;"><?php
 
                 $sql = "SELECT * FROM notificacao WHERE status = '0'";
                 $query = mysqli_query($conexao, $sql);
                 $numero = mysqli_num_rows($query);
-                echo 'Para ler';
+                echo '<h5 style="width: 350px; margin-left: 30px;">Notificações</h5>';
 
                 ?></li>
-              <li>
+              <li style="width: 350px;">
                 <!-- inner menu: contains the actual data -->
-                <ul class="menu">
+                <ul class="menu" style="width: 350px;">
 
 
                                   <?php
@@ -117,12 +117,9 @@ if (isset($_GET['sair'])) {
                     $QUERY = mysqli_query($conexao, $SQL);
 
                     while ($info = mysqli_fetch_assoc($QUERY)) {
-                      echo "<li>
-                              <a href='#'>
-                                <h4>
-                                  ".$info['nome']."
-                                </h4>
-                                <p>".$info['mensagem']."</p>
+                      echo "<li style='width: 350px;'>
+                              <a href='#' style='width: 350px;'>
+                                <h4 style='width: 350px;'><p style='font-weight: bold;'>".$info['nome']."</p><p>".$info['mensagem']."</p></h4>
                               </a>
                             </li>
                             ";
@@ -131,7 +128,7 @@ if (isset($_GET['sair'])) {
                   ?>
                 </ul>
               </li>
-              <li class="footer"><a href="?page=msg">ver todas</a></li>
+              <li class="footer"><a href="?page=msg">LER MAIS</a></li>
             </ul>
           </li>
           <!-- Notifications: style can be found in dropdown.less -->

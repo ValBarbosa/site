@@ -17,7 +17,7 @@ if ($query) {
 		$sql_foto = "INSERT INTO img VALUES (DEFAULT, '".$id."', '".$novo_nome."')";
 		$query_foto = mysqli_query($conexao, $sql_foto);
 											
-		$sql_cat = "INSERT INTO categoria(idcategoria,idproduto,categoria) VALUES (DEFAULT,'".$id."','".$_POST['cat']."')";
+		$sql_cat = "INSERT INTO categoria(idcategoria,idproduto) VALUES (DEFAULT,'".$id."')";
 		$query_cat = mysqli_query($conexao, $sql_cat);
 
 		$sql_cor = "INSERT INTO cor(idcor,idproduto,cor) VALUES (DEFAULT,'".$id."','".$_POST['cor']."')";
