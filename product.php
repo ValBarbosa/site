@@ -381,17 +381,18 @@
 
 	<!-- Title Page -->
 	<?php
-	if (isset($_POST['cat'])){
-$sqlOpt = "SELECT * FROM categoria WHERE idcategoria = 'cat'";
-$queryOpt = mysqli_query($conexao,$sqlOpt);
-while ($opt = mysqli_fetch_assoc($queryOpt)) {
+if (isset($_GET['cat'])) {
+$sqlFoto = "SELECT * FROM categoria WHERE idcategoria = '".$_GET['cat']."'";
+$queryFoto = mysqli_query($conexao, $sqlFoto);
+$caminho = "admin/dist/img/";
+ while ($foto = mysqli_fetch_assoc($queryFoto)) {
 	echo"
-	<section class='bg-title-page p-t-50 p-b-40 flex-col-c-m' style='background-image:".$opt['image'].'.jpg'.";'>
+	<section class='bg-title-page p-t-50 p-b-40 flex-col-c-m' style='background-image:".$caminho.$foto['image'].";'>
 		<h2 class='l-text2 t-center'>
-			".$opt['categoria']."
+			".$foto['categoria']."
 		</h2>
 		<p class='m-text13 t-center'>
-			".$opt['categoria']."
+			".$foto['categoria']."
 		</p>
 	</section>";
 }}
@@ -409,6 +410,11 @@ while ($opt = mysqli_fetch_assoc($queryOpt)) {
 						</h4>
 
 						<ul class="p-b-54">
+							<li class='p-t-4'>
+								<a  href='?page=todos' class='s-text13 active1'>
+									Todos
+								</a>
+							</li>
 							<?php
 			$sql = "SELECT * FROM categoria";
 			$query = mysqli_query($conexao, $sql);
@@ -416,7 +422,7 @@ while ($opt = mysqli_fetch_assoc($queryOpt)) {
 				while ($dados = mysqli_fetch_assoc($query)) {
 					echo "
 					<li class='p-t-4'>
-								<a name='cat' href='?opt=".$dados['idcategoria']."' class='s-text13 active1'>
+								<a href='?cat=".$dados['idcategoria']."' class='s-text13 active1'>
 									".$dados['categoria']."
 								</a>
 							</li>
@@ -495,39 +501,33 @@ while ($opt = mysqli_fetch_assoc($queryOpt)) {
 								</li>
 							</ul>
 						</div>
-
-						<div class="search-product pos-relative bo4 of-hidden">
-							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="search-product" placeholder="Search Products...">
-
-							<button class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
-								<i class="fs-12 fa fa-search" aria-hidden="true"></i>
-							</button>
+						<!-- vou usa aggrrrrr 
+						//
+						//
+						//-->
+                      <form method="get">
+     			<div class="search-product pos-relative bo4 of-hidden">
+							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="pesquisa" placeholder="Pesquisar Produtos...">
+							<input type="submit" placeholder="PQS" class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
+								
 						</div>
+                   </form>
+			
 					</div>
 				</div>
-
+                      <!--   // vou usa aggrrrrr 
+						//
+						//
+						//-->
 				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
 					<!--  -->
 					<div class="flex-sb-m flex-w p-b-35">
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting">
-									<option>Default Sorting</option>
-									<option>Popularity</option>
-									<option>Price: low to high</option>
-									<option>Price: high to low</option>
-								</select>
-							</div>
-
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting">
-									<option>Price</option>
-									<option>$0.00 - $50.00</option>
-									<option>$50.00 - $100.00</option>
-									<option>$100.00 - $150.00</option>
-									<option>$150.00 - $200.00</option>
-									<option>$200.00+</option>
-
+									<option>Filtrar:</option>
+									<option >Menor valor para o maior</option>
+									<option >Maior valor para o menor</option>
 								</select>
 							</div>
 						</div>
@@ -540,6 +540,47 @@ while ($opt = mysqli_fetch_assoc($queryOpt)) {
 					<!-- Product -->
 
 					<?php
+					$sqlPesquisa = "SELECT * FROM produto,img WHERE nome LIKE '%".$_GET['pesquisa']."%' ORDER BY nome ASC";
+					$queryPesquisa = mysqli_query($conexao,$sqlPesquisa);
+					while ($pro = mysqli_fetch_assoc($queryPesquisa)) {
+					echo '
+					<div class="row" style="height:500px">
+						<div class="col-sm-6 col-lg-6 p-b-50">
+							<!-- Block2 -->
+							<div class="block2" style="width:300px; height:400px;">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+									<img style="width:300px; height:400px;" src="admin/image/'.$pro['image'].'" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
+
+										<div class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+												Adicionar
+											</button>
+										</div>
+									</div>
+								</div>
+                              <center>
+								<div class="block2-txt p-t-20">
+									<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
+										'.$pro['nome'].'
+									</a>
+
+									<span class="block2-price m-text6 p-r-5">
+										preço:'.$pro['preco'].'
+									</span>
+								</div> </center>
+							</div>
+						</div>
+						</div>
+';
+}
+if (isset($_GET['page'])) {
 $sql = "SELECT * FROM produto,img WHERE produto.idproduto = img.idproduto";
  $query = mysqli_query($conexao, $sql);
 
@@ -547,7 +588,7 @@ $sql = "SELECT * FROM produto,img WHERE produto.idproduto = img.idproduto";
 
 
 					echo '
-					<div class="row">
+					<div class="row" style="height:500px">
 						<div class="col-sm-6 col-lg-6 p-b-50">
 							<!-- Block2 -->
 							<div class="block2" style="width:300px; height:400px;">
@@ -568,21 +609,68 @@ $sql = "SELECT * FROM produto,img WHERE produto.idproduto = img.idproduto";
 										</div>
 									</div>
 								</div>
-
+                              <center>
 								<div class="block2-txt p-t-20">
-									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+									<a href="product-detail.php" class="block2-name dis-block s-text3 p-b-5">
 										'.$dados['nome'].'
 									</a>
 
 									<span class="block2-price m-text6 p-r-5">
 										preço:'.$dados['preco'].'
 									</span>
-								</div>
+								</div> </center>
 							</div>
 						</div>
 						</div>
 ';
-}
+}}
+
+
+
+
+if (isset($_GET['cat'])) {
+$sqlBuscaCat = "SELECT * FROM produto,img WHERE produto.idproduto = img.idproduto AND produto.categoria = '".$_GET['cat']."'";
+$queryBuscaCat = mysqli_query($conexao, $sqlBuscaCat);
+ while ($dado = mysqli_fetch_assoc($queryBuscaCat)) {
+
+
+					echo '
+					<div class="row">
+						<div class="col-lg-6 col-sm-4 p-b-50">
+							<!-- Block2 -->
+							<div class="block2" style="width:300px; height:400px;">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+									<img style="width:300px; height:400px;" src="admin/image/'.$dado['image'].'" alt="IMG-PRODUCT">
+
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+										</a>
+
+										<div class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+												Adicionar
+											</button>
+										</div>
+									</div>
+								</div>
+                            <center>
+								<div class="block2-txt p-t-20">
+									<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
+										'.$dado['nome'].'
+									</a>
+
+									<span class="block2-price m-text6 p-r-5">
+										preço:'.$dado['preco'].'
+									</span>
+								</div></center>
+							</div>
+						</div>
+						</div>
+';
+}}
 						?>		
 
 
@@ -620,7 +708,7 @@ $sql = "SELECT * FROM produto,img WHERE produto.idproduto = img.idproduto";
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Categories
+					Categorias
 				</h4>
 				<ul>
 					<ul>
@@ -629,7 +717,7 @@ $sqlC = "SELECT * FROM categoria";
 $queryC = mysqli_query($conexao, $sqlC);
 while ($dado =  mysqli_fetch_assoc($queryC)){
 			echo "<li class='p-b-9'>
-			<a href='#' class='s-text7'>
+			<a href='?cat=".$dado['idcategoria']."' class='s-text7'>
 					".$dado['categoria']."
 						</a>
 					</li>";
