@@ -1,11 +1,11 @@
 <?php 
-error_reporting(0);
+error_reporting();
 if (isset($_POST['categoria']) ) {
-$ext = substr($_FILES['file']['name'],-4);
-    $novo = substr(md5(microtime()), -8);
-    $tam = $novo.$ext;
-    move_uploaded_file($_FILES['file']['tmp_name'], "dist/img/".$tam);
-    $sql = "INSERT INTO categoria(idcategoria,categoria,image) VALUES (DEFAULT,'".$_POST['categoria']."', '".$tam."')";
+    $ext1 = substr($_FILES['arquivo']['name'], -4);
+    $novo1 = substr(md5(microtime()), -8);
+    move_uploaded_file($_FILES['arquivo']['tmp_name'], "dist/img/" .$novo1.$ext1);
+    
+    $sql = "INSERT INTO categoria(idcategoria,categoria,image) VALUES (DEFAULT,'".$_POST['categoria']."', '".$novo1.$ext1."')";
             $query = mysqli_query($conexao, $sql);
             if ($query) {
               echo "<script>alert('Cadastrada!!')</script>";
@@ -34,7 +34,7 @@ $ext = substr($_FILES['file']['name'],-4);
           <br>
           <div class="form-group">
             <label>Foto</label>
-            <input type="file" name="file">
+            <input type="file" name="arquivo">
           </div><br>
           <button class="btn btn-success btn-block">Cadastrar</button>
         </form>

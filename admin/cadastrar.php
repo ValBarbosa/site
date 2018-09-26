@@ -1,36 +1,36 @@
 <?php
 error_reporting(0);
 if(isset($_POST['nome']) && isset($_POST['preco']) && isset($_POST['quant']) && isset($_POST['descricao'])  && isset($_POST['cat']) && isset($_POST['cor']) && isset($_POST['tamanho'])){
-if (isset($_FILES['file'])) {
-	$dir = "image/";
-$extensao = substr($_FILES['file']['name'], -4);
-$novo_nome = md5(microtime()).$extensao;
-move_uploaded_file($_FILES['file']['tmp_name'], $dir.$novo_nome);
 
- $sql = "INSERT INTO produto(`idproduto`, `nome`, `preco`, `descricao`, `quantidade`,`categoria`) VALUES (DEFAULT,'".$_POST['nome']."', '".$_POST['preco']."', '".$_POST['descricao']."', '".$_POST['quant']."', '".$_POST['cat']."') ";
+	$ext1 = substr($_FILES['arquivo1']['name'], -4);
+    $novo1 = substr(md5(microtime()), -8);
+    move_uploaded_file($_FILES['arquivo1']['tmp_name'], "dist/img/" .$novo1.$ext1);
+    //IMAGE2
+    $ext2 = substr($_FILES['arquivo2']['name'], -4);
+    $novo2 = substr(md5(microtime()), -8);
+    move_uploaded_file($_FILES['arquivo2']['tmp_name'], "dist/img/" .$novo2.$ext2);
+    //IMAGE3
+    $ext3 = substr($_FILES['arquivo3']['name'], -4);
+    $novo3 = substr(md5(microtime()), -8);
+    move_uploaded_file($_FILES['arquivo3']['tmp_name'], "dist/img/" .$novo3.$ext3);
+
+ $sql = "INSERT INTO produto(`idproduto`, `nome`, `preco`, `descricao`, `quantidade`,`categoria`,`cor`,`tamanho`,`img`) VALUES (DEFAULT,'".$_POST['nome']."', '".$_POST['preco']."', '".$_POST['descricao']."', '".$_POST['quant']."', '".$_POST['cat']."', '".$_POST['cor']."', '".$_POST['tamanho']."', '".$novo1.$ext1."') ";
      $query = mysqli_query($conexao, $sql);
 if ($query) {
 		$sqlid = "SELECT LAST_INSERT_ID()";
 		$queryid = mysqli_query($conexao, $sqlid);
 		$vetor = mysqli_fetch_row($queryid);
 		$id = $vetor[0];
-		$sql_foto = "INSERT INTO img VALUES (DEFAULT, '".$id."', '".$novo_nome."')";
+
+		$sql_foto = "INSERT INTO img VALUES (DEFAULT, '".$id."', '".$novo1.$ext1."', '".$novo2.$ext2."', '".$novo3.$ext3."')";
 		$query_foto = mysqli_query($conexao, $sql_foto);
-											
-		$sql_cat = "INSERT INTO categoria(idcategoria,idproduto) VALUES (DEFAULT,'".$id."')";
-		$query_cat = mysqli_query($conexao, $sql_cat);
 
-		$sql_cor = "INSERT INTO cor(idcor,idproduto,cor) VALUES (DEFAULT,'".$id."','".$_POST['cor']."')";
-		$query_cor = mysqli_query($conexao, $sql_cor);
-
-		$sql_tam = "INSERT INTO tamanho(idtamanho,idproduto,tamanho) VALUES (DEFAULT,'".$id."','".$_POST['tamanho']."')";
-		$query_tam = mysqli_query($conexao, $sql_tam);
 		echo "<script>alert('Cadastrado!!')</script>";
 	} else {
 		echo "<script>alert('Erro!!')</script>";
 	}
 
-} }
+} 
 
 ?>
 <!doctype html>
@@ -67,7 +67,7 @@ if ($query) {
                 $sqlbusca = "SELECT * FROM categoria";
                 $querybusca = mysqli_query($conexao, $sqlbusca);
                 while ($dadobusca = mysqli_fetch_assoc($querybusca)) {
-                  echo '<option value="'.$dadobusca['idcategoria'].'">'.$dadobusca['categoria'].'</option>';
+                  echo '<option value="'.$dadobusca['categoria'].'">'.$dadobusca['categoria'].'</option>';
                 }
               ?>
             </select>
@@ -83,7 +83,7 @@ if ($query) {
                 $sqlbuscacor = "SELECT * FROM cor";
                 $querybuscacor = mysqli_query($conexao, $sqlbuscacor);
                 while ($dadobuscacor = mysqli_fetch_assoc($querybuscacor)) {
-                  echo '<option value="'.$dadobuscacor['idcor'].'">'.$dadobuscacor['cor'].'</option>';
+                  echo '<option value="'.$dadobuscacor['cor'].'">'.$dadobuscacor['cor'].'</option>';
                 }
               ?>
             </select>
@@ -97,7 +97,7 @@ if ($query) {
                 $sqltamanho = "SELECT * FROM tamanho";
                 $querytamanho = mysqli_query($conexao, $sqltamanho);
                 while ($dadobuscatamanho = mysqli_fetch_assoc($querytamanho)) {
-                  echo '<option value="'.$dadobuscatamanho['idtamanho'].'">'.$dadobuscatamanho['tamanho'].'</option>';
+                  echo '<option value="'.$dadobuscatamanho['tamanho'].'">'.$dadobuscatamanho['tamanho'].'</option>';
                 }
               ?>
             </select>
@@ -108,8 +108,10 @@ if ($query) {
           <textarea class="form-control" name="descricao" id="exampleFormControlTextarea1" rows="3" placeholder="Vestido em malha de poliéster com elastano. Possui manga, recortes abaixo do busto e corte a fio."></textarea>
         </div>
         <div class="form-group">
-          <label for="exampleFormControlFile1">Foto: </label>
-          <input type="file" name="file" multiple class="form-control-file" id="exampleFormControlFile1">
+          <label for="exampleFormControlFile1">Imagens Pricipal </label>
+          <input type="file" name="arquivo1" class="form-control-file" id="exampleFormControlFile1">
+          <input type="file" name="arquivo2" class="form-control-file" id="exampleFormControlFile1">
+          <input type="file" name="arquivo3" class="form-control-file" id="exampleFormControlFile1">
         </div>
         <input class="btn btn-primary" value="CADASTRAR" type="submit" name="submit">
         <!-- <button type="submit" name="enviar" class="btn btn-primary">CADASTRAR</button> -->

@@ -332,6 +332,18 @@ if (isset($_GET['sair'])) {
         <br>
         <li class="active treeview menu-open">
           <a href="#">
+            <i style="text-decoration: none;" class="fa fa-circle-o"></i> <span> Tamanho</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="?page=cadastra_tamanho"><i class="fa fa-plus"></i> Cadastrar</a></li>
+          </ul>
+        </li>
+        <br>
+        <li class="active treeview menu-open">
+          <a href="#">
             <i style="text-decoration: none;" class="fa fa-circle-o"></i> <span> Mensagem</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
