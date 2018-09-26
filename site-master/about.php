@@ -1,8 +1,7 @@
-<?php include('admin/config.php');  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Product Detail</title>
+	<title>SOBRE</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -48,7 +47,7 @@
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Frete grátis para pedidos padrão acima de R$ 100,00
 				</span>
 
 				<div class="topbar-child2">
@@ -58,8 +57,8 @@
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option>BR</option>
+							<option>EUA</option>
 						</select>
 					</div>
 				</div>
@@ -67,7 +66,7 @@
 
 			<div class="wrap_header">
 				<!-- Logo -->
-				<a href="index.html" class="logo">
+				<a href="index.php" class="logo">
 					<img src="images/icons/logo.png" alt="IMG-LOGO">
 				</a>
 
@@ -76,36 +75,36 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Home</a>
+								<a href="index.php">HOME</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
+									<li><a href="index.php">Homepage V1</a></li>
+									<li><a href="home-02.php">Homepage V2</a></li>
+									<li><a href="home-03.php">Homepage V3</a></li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.php">LOJA</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="product.php">LIQUIDAÇÃO</a>
 							</li>
 
 							<li>
-								<a href="cart.html">Features</a>
+								<a href="cart.php">INFORMAÇÕES</a>
 							</li>
 
 							<li>
-								<a href="blog.html">Blog</a>
+								<a href="blog.php">BLOG</a>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">SOBRE</a>
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">CONTATO</a>
 							</li>
 						</ul>
 					</nav>
@@ -123,7 +122,7 @@
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 						<span class="header-icons-noti">0</span>
 
-						<!-- Header cart noti -->
+						<!-- Header cart -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
@@ -182,15 +181,15 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										VER CARRINHO
 									</a>
 								</div>
 
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
 									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
+										CONFIRA
 									</a>
 								</div>
 							</div>
@@ -203,7 +202,7 @@
 		<!-- Header Mobile -->
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
-			<a href="index.html" class="logo-mobile">
+			<a href="index.php" class="logo-mobile">
 				<img src="images/icons/logo.png" alt="IMG-LOGO">
 			</a>
 
@@ -280,15 +279,15 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										VER CARRINHO
 									</a>
 								</div>
 
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
 									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
+										CONFIRA
 									</a>
 								</div>
 							</div>
@@ -310,7 +309,7 @@
 				<ul class="main-menu">
 					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 						<span class="topbar-child1">
-							Free shipping for standard order over $100
+							Frete grátis para pedidos padrão acima de R$ 100,00
 						</span>
 					</li>
 
@@ -322,8 +321,8 @@
 
 							<div class="topbar-language rs1-select2">
 								<select class="selection-1" name="time">
-									<option>USD</option>
-									<option>EUR</option>
+									<option>BR</option>
+									<option>EUA</option>
 								</select>
 							</div>
 						</div>
@@ -340,263 +339,80 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="index.html">Home</a>
+						<a href="index.php">HOME</a>
 						<ul class="sub-menu">
-							<li><a href="index.html">Homepage V1</a></li>
-							<li><a href="home-02.html">Homepage V2</a></li>
-							<li><a href="home-03.html">Homepage V3</a></li>
+							<li><a href="index.php">Homepage V1</a></li>
+							<li><a href="home-02.php">Homepage V2</a></li>
+							<li><a href="home-03.php">Homepage V3</a></li>
 						</ul>
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Shop</a>
+						<a href="product.php">LOJA</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Sale</a>
+						<a href="product.php">LIQUIDAÇÃO</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="cart.html">Features</a>
+						<a href="cart.php">INFORMAÇÕES</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="blog.html">Blog</a>
+						<a href="blog.php">BLOG</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="about.html">About</a>
+						<a href="about.php">SOBRE</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="contact.html">Contact</a>
+						<a href="contact.php">CONTATO</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 	</header>
 
-	<!-- Product Detail -->
-	<div class="container bgwhite p-t-35 p-b-80">
-		<div class="flex-w flex-sb">
-			<div class="w-size13 p-t-30 respon5">
-				<div class="wrap-slick3 flex-sb flex-w">
-					<div class="wrap-slick3-dots"></div>
-<<<<<<< HEAD
-<!-- img -->
-<?php 
-$sqlMostra = "SELECT * FROM img WHERE idproduto = '".$_GET['mostra']."' LIMIT 1";
-$queryMostra = mysqli_query($conexao,$sqlMostra);
-while ($mostra = mysqli_fetch_assoc($queryMostra)) {
-				echo'	<div class="slick3">
-						<div class="item-slick3" data-thumb="admin/dist/img/'.$mostra['img1'].'">
-							<div class="wrap-pic-w">
-								<img src="admin/dist/img/'.$mostra['img1'].'" alt="IMG-PRODUCT">
-							</div>
-						</div>
+	<!-- Title Page -->
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
+		<h2 class="l-text2 t-center">
+			SOBRE
+		</h2>
+	</section>
 
-						<div class="item-slick3" data-thumb="admin/dist/img/'.$mostra['img2'].'">
-							<div class="wrap-pic-w">
-								<img src="admin/dist/img/'.$mostra['img2'].'" alt="IMG-PRODUCT">
-							</div>
-						</div>
-
-						<div class="item-slick3" data-thumb="admin/dist/img/'.$mostra['img3'].'">
-							<div class="wrap-pic-w">
-								<img src="admin/dist/img/'.$mostra['img3'].'" alt="IMG-PRODUCT">
-							</div>
-						</div>
-					</div>';
-				}
-					?>
-<!--img-->
-
-=======
-<!-- img
-<?php 
-//$sqlMostra = "SELECT * FROM img WHERE idproduto = '".$_GET['mostra']."'";
-//$queryMostra = mysqli_query($conexao,$sqlMostra);
-//while ($mostra = mysqli_num_rows($queryMostra)) {
-				//echo'	<div class="slick3">
-				//		<div class="item-slick3" data-thumb="admin/dist/img/'.$mostra['image'].'">
-					//		<div class="wrap-pic-w">
-					//			<img src="admin/dist/img/'.$mostra['image'].'" alt="IMG-PRODUCT">
-					//		</div>
-					//	</div>
-				//	</div>';
-				//}
-					?>
-img-->
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
-				</div>
-			</div>
-<!--termina -->
-<?php
-<<<<<<< HEAD
-  $sqlDeta = "SELECT * FROM produto WHERE idproduto = '".$_GET['mostra']."'";
-=======
-  $sqlDeta = "SELECT * FROM produto,cor,tamanho WHERE produto.idproduto = tamanho.idproduto  AND produto.idproduto = cor.idproduto  AND produto.idproduto = '".$_GET['mostra']."'";
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
-  $queryDelta = mysqli_query($conexao,$sqlDeta);
-  while ($deta = mysqli_fetch_assoc($queryDelta)) {
-  	echo '
-			<div class="w-size14 p-t-30 respon5">
-				<h4 class="product-detail-name m-text16 p-b-13">
-				   '.$deta["nome"].'
-				</h4>
-           
-				<span class="m-text17">
-				  R$ '.$deta["preco"].' reais
-				</span>
-
-				<!--  -->
-				<div class="p-t-33 p-b-60">
-					<div class="flex-m flex-w p-b-10">
-						<div class="s-text15 w-size15 t-center">
-							Size
-						</div>
-
-						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="size">
-								<option>Escolha:</option>
-								<option>'.$deta['tamanho'].'</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="flex-m flex-w">
-						<div class="s-text15 w-size15 t-center">
-							Color
-						</div>
-
-						<div class="rs2-select2 rs3-select2 bo4 of-hidden w-size16">
-							<select class="selection-2" name="color">
-								<option>Escolha:</option>
-								<option>'.$deta['cor'].'</option>
-							</select>
-						</div>
-					</div>
-
-					<div class="flex-r-m flex-w p-t-10">
-						<div class="w-size16 flex-m flex-w">
-							<div class="flex-w bo5 of-hidden m-r-22 m-t-10 m-b-10">
-								<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-									<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-								</button>
-
-								<input class="size8 m-text18 t-center num-product" type="number" name="num-product" value="1">
-
-								<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-									<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-								</button>
-							</div>
-
-							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
-								<!-- Button -->
-								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-									Adicionar
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="p-b-45">
-<<<<<<< HEAD
-					<span class="s-text8">Categoria: '.$deta['categoria'].'</span>
-=======
-					<span class="s-text8">Categories: Mug, Design</span>
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
-				</div>
-
-				<!--  -->
-				<div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
-					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
-						Descrição
-						<i class="down-mark fs-12 color1 fa fa-minus dis-none" aria-hidden="true"></i>
-						<i class="up-mark fs-12 color1 fa fa-plus" aria-hidden="true"></i>
-					</h5>
-
-					<div class="dropdown-content dis-none p-t-15 p-b-23">
-						<p class="s-text8">
-<<<<<<< HEAD
-							'.$deta["descricao"].'
-=======
-							'.$deta["descricad"].'
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
-						</p>
-					</div>
-				</div>
-			</div>';
-		}
-			?>
-			<!--termina -->
-
-		</div>
-	</div>
-
-
-	<!-- Relate Product -->
-	<section class="relateproduct bgwhite p-t-45 p-b-138">
+	<!-- content page -->
+	<section class="bgwhite p-t-66 p-b-38">
 		<div class="container">
-			<div class="sec-title p-b-60">
-				<h3 class="m-text5 t-center">
-					Produtos Relacionados
-				</h3>
-			</div>
+			<div class="row">
+				<div class="col-md-4 p-b-30">
+					<div class="hov-img-zoom">
+						<img src="images/banner-14.jpg" alt="IMG-ABOUT">
+					</div>
+				</div>
 
-			<!-- Slide2 -->
-			<div class="wrap-slick2">
-				<div class="slick2">
+				<div class="col-md-8 p-b-30">
+					<h3 class="m-text26 p-t-15 p-b-16">
+					NOSSA HISTORIA
+					</h3>
 
-					
-<<<<<<< HEAD
-							<!-- comeca -->
-				<?php
-				$sql = "SELECT * FROM produto WHERE idproduto = idproduto";
- $query = mysqli_query($conexao, $sql);
+					<p class="p-b-28">
+						Phasellus egestas nisi nisi, lobortis ultricies risus semper nec. Vestibulum pharetra ac ante ut pellentesque. Curabitur fringilla dolor quis lorem accumsan, vitae molestie urna dapibus. Pellentesque porta est ac neque bibendum viverra. Vivamus lobortis magna ut interdum laoreet. Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. Vivamus tristique vulputate ultricies. Sed vitae ultrices orci.
+					</p>
 
- while ($dados = mysqli_fetch_assoc($query)) {
-					echo'	<div class="item-slick2 p-l-15 p-r-15">
-						<div class="block2">	<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="admin/dist/img/'.$dados['img'].'" alt="IMG-PRODUCT" style="width:300px; height:400px;">
+					<div class="bo13 p-l-29 m-l-9 p-b-10">
+						<p class="p-b-11">
+							Criatividade é apenas conectar as coisas. Quando você pergunta a pessoas criativas como elas fizeram algo, elas se sentem um pouco culpadas porque elas realmente não fizeram isso, elas apenas viram algo. Pareceu óbvio para eles depois de um tempo.
+						</p>
 
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Adicionar
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.php?mostra='.$dados['idproduto'].'" class="block2-name dis-block s-text3 p-b-5">
-									'.$dados['nome'].'
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									R$'.$dados['preco'].' reais
-								</span>
-							</div>
-						</div>
-					</div>';
-				}
-					?>
-<!-- comeca -->
-=======
-				
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
+						<span class="s-text7">
+							- Steve Job’s
+						</span>
+					</div>
 				</div>
 			</div>
-
 		</div>
 	</section>
 
@@ -606,12 +422,12 @@ img-->
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					GET IN TOUCH
+					ENTRAR EM CONTATO
 				</h4>
 
 				<div>
 					<p class="s-text7 w-size27">
-						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
+						Alguma pergunta? Deixe-nos saber,a loja está localizada no centro de Pereiro, ou ligue para (+55) 98140-8962
 					</p>
 
 					<div class="flex-m p-t-30">
@@ -626,31 +442,31 @@ img-->
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Categories
+				CATEGORIAS
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Men
+							MASCULINO
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Women
+							FEMININO
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Dresses
+							VESTIDOS
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Sunglasses
+							ÓCULOS
 						</a>
 					</li>
 				</ul>
@@ -658,31 +474,31 @@ img-->
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Links
+					LINKS
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Search
+							PESQUISA
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							About Us
+							SOBRE NÓS
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Contact Us
+							NOSSO CONTATO
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Returns
+							RETORNO
 						</a>
 					</li>
 				</ul>
@@ -690,25 +506,25 @@ img-->
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					Help
+					ASSISTÊNCIA
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Track Order
+							PEDIDO
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Returns
+							RETORNO
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							Shipping
+							FROTA
 						</a>
 					</li>
 
@@ -722,7 +538,7 @@ img-->
 
 			<div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					Newsletter
+					NOTÍCIAS
 				</h4>
 
 				<form>
@@ -734,7 +550,7 @@ img-->
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
 						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-							Subscribe
+							ENVIAR
 						</button>
 					</div>
 
@@ -764,7 +580,7 @@ img-->
 			</a>
 
 			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				Copyright © 2018. All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 			</div>
 		</div>
 	</footer>
@@ -804,34 +620,6 @@ img-->
 			dropdownParent: $('#dropDownSelect2')
 		});
 	</script>
-<!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
-	<script type="text/javascript" src="js/slick-custom.js"></script>
-<!--===============================================================================================-->
-	<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
-	<script type="text/javascript">
-		$('.block2-btn-addcart').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
-			});
-		});
-
-		$('.block2-btn-addwishlist').each(function(){
-			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-			});
-		});
-
-		$('.btn-addcart-product-detail').each(function(){
-			var nameProduct = $('.product-detail-name').html();
-			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
-			});
-		});
-	</script>
-
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
