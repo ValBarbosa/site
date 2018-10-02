@@ -1,11 +1,14 @@
 <?php 
-error_reporting();
-if (isset($_POST['categoria']) ) {
-    $ext1 = substr($_FILES['arquivo']['name'], -4);
-    $novo1 = substr(md5(microtime()), -8);
-    move_uploaded_file($_FILES['arquivo']['tmp_name'], "dist/img/" .$novo1.$ext1);
+error_reporting(0);
+if (isset($_POST['categoria']) && isset($_FILES['arquivo'])) {
+  
+    $dir = "dist/img/";
+    $ext1 = strtolower(substr($_FILES['arquivo']['name'], -4));
+    $novoNome1 = microtime().$ext1;
+    move_uploaded_file($_FILES['arquivo']['tmp_name'], $dir.$novoNome1);
+
     
-    $sql = "INSERT INTO categoria(idcategoria,categoria,image) VALUES (DEFAULT,'".$_POST['categoria']."', '".$novo1.$ext1."')";
+    $sql = "INSERT INTO categoria(idcategoria,categoria,image) VALUES (DEFAULT,'".$_POST['categoria']."', '".$novoNome1."')";
             $query = mysqli_query($conexao, $sql);
             if ($query) {
               echo "<script>alert('Cadastrada!!')</script>";
@@ -23,8 +26,11 @@ if (isset($_POST['categoria']) ) {
 <body>
 
 <br><br>
+
+  
   <div class="container" style="margin-left: 50px;">
     <div class="row">
+      <form  method="post" accept-charset="utf-8" enctype="multipart/form-data">
       <div class="col-md-6">
         <legend>Cadastrar categoria</legend>
         <form method="post">
@@ -34,11 +40,12 @@ if (isset($_POST['categoria']) ) {
           <br>
           <div class="form-group">
             <label>Foto</label>
-            <input type="file" name="arquivo">
+            <input type="file" name="arquivo" class="form-control-file" id="exampleFormControlFile1">
           </div><br>
           <button class="btn btn-success btn-block">Cadastrar</button>
         </form>
       </div>
+       </form>
     </div>  
   </div>
 </body>

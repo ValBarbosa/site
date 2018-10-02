@@ -1,3 +1,26 @@
+<?php
+   require('config.php');
+   session_start();
+   if(isset($_SESSION['user'])){
+ $sql = "SELECT * FROM user WHERE usuario ='".$_SESSION['user']."'";
+ $query = mysqli_query($conexao, $sql);
+
+ while ($dadosUser = mysqli_fetch_assoc($query)) {
+   $nome = $dadosUser['usuario'];
+   $email = $dadosUser['email'];
+   $imgUser = $dadosUser['img'];
+ }
+} else {
+  header('location:login.php');
+}
+if (isset($_GET['sair'])) {
+  session_destroy();
+  unlink($_SESSION['user']);
+  header('location:login.php');
+}
+        
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,12 +74,12 @@
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Feito para voce!
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						Seja bem vindo
 					</span>
 
 					<div class="topbar-language rs1-select2">
@@ -79,9 +102,9 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Home</a>
+								<a href="index.php">Home</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
+									<li><a href="index.php">Homepage V1</a></li>
 									<li><a href="home-02.html">Homepage V2</a></li>
 									<li><a href="home-03.html">Homepage V3</a></li>
 								</ul>
@@ -92,7 +115,7 @@
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="product.php?page=todos">Sale</a>
 							</li>
 
 							<li>
@@ -116,9 +139,27 @@
 
 				<!-- Heder Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
+			<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		<img style="width: 30px; height: 30px; border-radius: 50%;" src="admin/dist/img/<?php echo $imgUser ?>" class="header-icon1" alt="ICON">
+			</a>
+            <ul class="dropdown-menu" style="width: 250px; margin:5px;">
+                <ul class="menu"><li class="user-header">
+                <p>
+                	<center>
+                  <label>usuario: <?php echo $nome ?> </label>
+                  <br>
+                  <small>Email: <?php echo $email ?></small>
+                  <br>
+                  <br>
+                  <a href="?sair" class="btn btn-default ">Sair</a>
+              </center>
+                </p>
+              </li>
+                </ul>
+            </ul>
+          </li>
+
 
 					<span class="linedivide1"></span>
 
@@ -384,58 +425,58 @@
 	<section class="slide1">
 		<div class="wrap-slick1">
 			<div class="slick1">
-				<div class="item-slick1 item1-slick1" style="background-image: url(images/master-slide-02.jpg);">
+				<div class="item-slick1 item1-slick1" style="background-image: url(images/2.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="fadeInDown">
-							Women Collection 2018
+							Moda
 						</span>
 
 						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="fadeInUp">
-							New arrivals
+							Praia
 						</h2>
 
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="zoomIn">
 							<!-- Button -->
-							<a href="product.html" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
-								Shop Now
+							<a href="product.php?page=todos" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+								Ver +
 							</a>
 						</div>
 					</div>
 				</div>
 
-				<div class="item-slick1 item2-slick1" style="background-image: url(images/master-slide-03.jpg);">
+				<div class="item-slick1 item2-slick1" style="background-image: url(images/1.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rollIn">
-							Women Collection 2018
+							Moda 
 						</span>
 
 						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="lightSpeedIn">
-							New arrivals
+							Feminina e Masculina
 						</h2>
 
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="slideInUp">
 							<!-- Button -->
-							<a href="product.html" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
-								Shop Now
+							<a href="product.php?page=todos" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+								Ver +
 							</a>
 						</div>
 					</div>
 				</div>
 
-				<div class="item-slick1 item3-slick1" style="background-image: url(images/master-slide-04.jpg);">
+				<div class="item-slick1 item3-slick1" style="background-image: url(images/3.jpg);">
 					<div class="wrap-content-slide1 sizefull flex-col-c-m p-l-15 p-r-15 p-t-150 p-b-170">
 						<span class="caption1-slide1 m-text1 t-center animated visible-false m-b-15" data-appear="rotateInDownLeft">
-							Women Collection 2018
+							Moda
 						</span>
 
 						<h2 class="caption2-slide1 xl-text1 t-center animated visible-false m-b-37" data-appear="rotateInUpRight">
-							New arrivals
+							Infantil
 						</h2>
 
 						<div class="wrap-btn-slide1 w-size1 animated visible-false" data-appear="rotateIn">
 							<!-- Button -->
-							<a href="product.html" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
-								Shop Now
+							<a href="product.php?page=todos" class="flex-c-m size2 bo-rad-23 s-text2 bgwhite hov1 trans-0-4">
+								Ver +
 							</a>
 						</div>
 					</div>

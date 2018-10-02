@@ -1,19 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ver todas</title>
+  <link rel="stylesheet" type="text/css" href="dist/css/bootstrap.min.css">
+</head>
+<body>
+
+<table style="margin-left: 50px;" class="table table-hover">
+  <thead>
+    <tr>
+      <td>Nome</td>
+      <td>Mensagem</td>
+    </tr>
+  </thead>
+
+  <tbody>
 <?php                    
-  $sql = "SELECT * FROM contato, notificacao WHERE contato.idcontato = notificacao.idcontato AND notificacao.status = 0 ORDER BY contato.idcontato desc";
+  $sql = "SELECT * FROM contato, notificacao ORDER BY contato.idcontato desc";
   $query = mysqli_query($conexao, $sql);
  
     while ($dados = mysqli_fetch_assoc($query)) {
-      echo '<li><!-- start message -->
-          <div class="pull-left">
-            <img src="image/mail.jpg" class="img-circle" alt="User Image">
-          </div>
-          <h4>
-          '.$dados['nome'].'
-          </h4>
-          <p>'.$dados['mensagem'].'</p>
-        </li>
-        <!-- end message -->';
+      echo "<tr>
+            <td>".$dados['nome']."</td>
+            <td>".$dados['mensagem']."</td>
+          </tr>";
       }
 
 ?>
+
+</tbody>
+
+</table>
+
+</body>
+</html>
       

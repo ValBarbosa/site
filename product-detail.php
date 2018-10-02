@@ -48,12 +48,12 @@
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Feito para voce!
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						Seja bem vindo
 					</span>
 
 					<div class="topbar-language rs1-select2">
@@ -76,20 +76,20 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Home</a>
+								<a href="index.php">Home</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
+									<li><a href="index.php">Homepage V1</a></li>
 									<li><a href="home-02.html">Homepage V2</a></li>
 									<li><a href="home-03.html">Homepage V3</a></li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.php?page=todos">Shop</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="product.php?page=todos">Sale</a>
 							</li>
 
 							<li>
@@ -105,7 +105,7 @@
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
 					</nav>
@@ -113,9 +113,6 @@
 
 				<!-- Header Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
 
 					<span class="linedivide1"></span>
 
@@ -383,7 +380,6 @@
 			<div class="w-size13 p-t-30 respon5">
 				<div class="wrap-slick3 flex-sb flex-w">
 					<div class="wrap-slick3-dots"></div>
-<<<<<<< HEAD
 <!-- img -->
 <?php 
 $sqlMostra = "SELECT * FROM img WHERE idproduto = '".$_GET['mostra']."' LIMIT 1";
@@ -412,7 +408,7 @@ while ($mostra = mysqli_fetch_assoc($queryMostra)) {
 					?>
 <!--img-->
 
-=======
+
 <!-- img
 <?php 
 //$sqlMostra = "SELECT * FROM img WHERE idproduto = '".$_GET['mostra']."'";
@@ -428,16 +424,11 @@ while ($mostra = mysqli_fetch_assoc($queryMostra)) {
 				//}
 					?>
 img-->
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
 				</div>
 			</div>
 <!--termina -->
 <?php
-<<<<<<< HEAD
   $sqlDeta = "SELECT * FROM produto WHERE idproduto = '".$_GET['mostra']."'";
-=======
-  $sqlDeta = "SELECT * FROM produto,cor,tamanho WHERE produto.idproduto = tamanho.idproduto  AND produto.idproduto = cor.idproduto  AND produto.idproduto = '".$_GET['mostra']."'";
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
   $queryDelta = mysqli_query($conexao,$sqlDeta);
   while ($deta = mysqli_fetch_assoc($queryDelta)) {
   	echo '
@@ -494,23 +485,17 @@ img-->
 
 							<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
 								<!-- Button -->
-								<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+								<a href="cart.php" style="text-decoration: none;"><button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
 									Adicionar
-								</button>
+								</button></a>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="p-b-45">
-<<<<<<< HEAD
 					<span class="s-text8">Categoria: '.$deta['categoria'].'</span>
-=======
-					<span class="s-text8">Categories: Mug, Design</span>
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
 				</div>
-
-				<!--  -->
 				<div class="wrap-dropdown-content bo6 p-t-15 p-b-14 active-dropdown-content">
 					<h5 class="js-toggle-dropdown-content flex-sb-m cs-pointer m-text19 color0-hov trans-0-4">
 						Descrição
@@ -520,11 +505,7 @@ img-->
 
 					<div class="dropdown-content dis-none p-t-15 p-b-23">
 						<p class="s-text8">
-<<<<<<< HEAD
 							'.$deta["descricao"].'
-=======
-							'.$deta["descricad"].'
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
 						</p>
 					</div>
 				</div>
@@ -550,8 +531,6 @@ img-->
 			<div class="wrap-slick2">
 				<div class="slick2">
 
-					
-<<<<<<< HEAD
 							<!-- comeca -->
 				<?php
 				$sql = "SELECT * FROM produto WHERE idproduto = idproduto";
@@ -591,9 +570,6 @@ img-->
 				}
 					?>
 <!-- comeca -->
-=======
-				
->>>>>>> a6ff7d6cef26285d8ca28068e51115c3028237aa
 				</div>
 			</div>
 

@@ -26,8 +26,8 @@
 				while ($dados = mysqli_fetch_assoc($query)) {
 					echo "<tr>
 						<td>".$dados['idcategoria']."</td>
-						<td>".$dados['categoria']."</td>
-						<td>".$dados['image'].'.jpg'."</td>
+						<td>".$dados['categoria']."</td>";
+						echo "<td><img style='width:50px; height:50px;' src='dist/img/".$dados['image']."'/></td>
 					</tr>";
 				}
 			}

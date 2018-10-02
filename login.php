@@ -1,22 +1,24 @@
 	<?php
 	session_start();
 	error_reporting(0);
-	if(!empty($_POST['user'])){
+	if(isset($_GET['user']) && isset($_GET['pass'])){
 
 		require("admin/config.php");
 
-		$sql = "SELECT id,usuario, senha FROM users_admin WHERE usuario = '".$_POST['user']. "' AND senha = '".$_POST['pass']."'";
+		$sql = "SELECT `id`,`usuario`,`senha` FROM `user` WHERE usuario = '".$_GET['user']."' AND senha = '".$_GET['pass']."'";
 
 		$query = mysqli_query($conexao, $sql);
 
 		if(mysqli_num_rows($query) > 0){
-			$_SESSION['user'] = $_POST['user'];
+			$_SESSION['user'] = $_GET['user'];
 			header('location:index.php');
 
 		}else{
 			$_SESSION['msg'] = "<div id='alert' class='alert alert-danger'>Usuário e/ou Senha incorretos!</div>";
 		}
 	}
+ if(isset($_GET['cadastrar'])){
+		header('location:cadastrarUser.php');}
 	?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -58,7 +60,9 @@
 		    <input type="password" class="form-control" id="pwd" name="pass">
 		  </div>
 		  <button type="submit" class="btn btn-primary form-control">Entrar</button><br>
-		  <br><button type="submit" class="btn btn-primary form-control">Cadastrar</button>
+		  </form>
+		  <form method="get">
+		  	<br><a href="cadastrarUser.php"><button name="cadastrar" type="submit" class="btn btn-primary form-control">Cadastrar</button></a>
 		  </form>
 		  </fieldset>
 

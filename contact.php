@@ -87,12 +87,12 @@ if ($query) {
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Feito para voce!
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						Seja bem vindo
 					</span>
 
 					<div class="topbar-language rs1-select2">
@@ -124,11 +124,11 @@ if ($query) {
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.php?page=todos">Shop</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="product.php?page=todos">Sale</a>
 							</li>
 
 							<li>
@@ -144,7 +144,7 @@ if ($query) {
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
 					</nav>
@@ -152,9 +152,7 @@ if ($query) {
 
 				<!-- Header Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
+					
 
 					<span class="linedivide1"></span>
 
@@ -379,9 +377,9 @@ if ($query) {
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="index.html">Home</a>
+						<a href="index.php">Home</a>
 						<ul class="sub-menu">
-							<li><a href="index.html">Homepage V1</a></li>
+							<li><a href="index.php">Homepage V1</a></li>
 							<li><a href="home-02.html">Homepage V2</a></li>
 							<li><a href="home-03.html">Homepage V3</a></li>
 						</ul>
@@ -389,11 +387,11 @@ if ($query) {
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Shop</a>
+						<a href="product.php?page=todos">Shop</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Sale</a>
+						<a href="product.php?page=todos">Sale</a>
 					</li>
 
 					<li class="item-menu-mobile">
@@ -409,7 +407,7 @@ if ($query) {
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="contact.html">Contact</a>
+						<a href="contact.php">Contact</a>
 					</li>
 				</ul>
 			</nav>
@@ -417,7 +415,7 @@ if ($query) {
 	</header>
 
 	<!-- Title Page -->
-	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
+	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(admin/image/atendimento.jpg);">
 		<h2 class="l-text2 t-center">
 			Contact
 		</h2>

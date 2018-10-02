@@ -1,4 +1,5 @@
-<?php include('admin/config.php'); ?>
+<?php include('admin/config.php'); 
+error_reporting(0);?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,10 +34,27 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
-<style type="text/css">
-	
-	}
-</style>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+						<script>
+					        $(document).ready(function(){
+ 					            $('#search-product').keyup(function(){
+ 					                $('#form').submit(function(){
+ 					                    var dados = $(this).serialize();
+ 					                    $.ajax({
+ 					                    	url: 'mostra.php',
+					                        type: 'GET',
+					                        dataType: 'html',
+					                        data: dados,
+					                        success: function(data){
+ 					                            $('#resultado').empty().html(data);
+ 					                        }
+ 					                    });
+ 					                    return false;
+ 					                });
+ 					                $('#form').trigger('submit');
+ 					            });
+ 					        });
+					    </script>
 </head>
 <body class="animsition" method="post">
 
@@ -54,12 +72,12 @@
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Feito para voce!
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						Sejam bem vindo
 					</span>
 
 					<div class="topbar-language rs1-select2">
@@ -82,20 +100,20 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Home</a>
+								<a href="index.php">Home</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
+									<li><a href="index.php">Homepage V1</a></li>
 									<li><a href="home-02.html">Homepage V2</a></li>
 									<li><a href="home-03.html">Homepage V3</a></li>
 								</ul>
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.php?page=todos">Shop</a>
 							</li>
 
 							<li class="sale-noti">
-								<a href="product.html">Sale</a>
+								<a href="product.php?page=todos">Sale</a>
 							</li>
 
 							<li>
@@ -111,7 +129,7 @@
 							</li>
 
 							<li>
-								<a href="contact.html">Contact</a>
+								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
 					</nav>
@@ -119,10 +137,6 @@
 
 				<!-- Header Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
-
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
@@ -382,26 +396,10 @@
 			</nav>
 		</div>
 	</header>
-<?php
-if (isset($_GET['cat'])) {
-$sqlFotoUm = "SELECT * FROM categoria WHERE categoria = '".$_GET['cat']."'";
-$queryFotoUm = mysqli_query($conexao,$sqlFotoUm);
-
-while ($fotoum = mysqli_fetch_assoc($queryFotoUm)) {
-	echo '<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(admin/dist/img/'.$fotoum['image'].');">
+	<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(admin/dist/img/photo4.jpg">
 		<h2 class="l-text2 t-center">
-			'.$fotoum['categoria'].'
 		</h2>
-	</section>';
-}
-}else {
-	echo '<section class="bg-title-page p-t-50 p-b-40 flex-col-c-m" style="background-image: url(images/loja.jpg);">
-		<h2 class="l-text2 t-center">
-			Bem vindo
-		</h2>
-	</section>';
-}
-?>
+	</section>
 
 
 	<!-- Content page -->
@@ -441,7 +439,7 @@ while ($fotoum = mysqli_fetch_assoc($queryFotoUm)) {
 						<h4 class="m-text14 p-b-32">
 							Filters
 						</h4>
-
+ <!--
 						<div class="filter-price p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-17">
 								Price
@@ -453,7 +451,7 @@ while ($fotoum = mysqli_fetch_assoc($queryFotoUm)) {
 
 							<div class="flex-sb-m flex-w p-t-16">
 								<div class="w-size11">
-									<!-- Button -->
+									 Button 
 									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
 										Filter
 									</button>
@@ -464,6 +462,7 @@ while ($fotoum = mysqli_fetch_assoc($queryFotoUm)) {
 								</div>
 							</div>
 						</div>
+-->
 
 						<div class="filter-color p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-12">
@@ -511,8 +510,8 @@ while ($fotoum = mysqli_fetch_assoc($queryFotoUm)) {
 						//
 						//
 						//-->
-                      <form method="get">
-     			<div class="search-product pos-relative bo4 of-hidden">
+                      <form id="form">
+     			<div class="search-product pos-relative bo4 of-hidden" id="search-product">
 							<input class="s-text7 size6 p-l-23 p-r-50" type="text" name="pesquisa" placeholder="Pesquisar Produtos...">
 							<input type="submit" placeholder="PQS" class="flex-c-m size5 ab-r-m color2 color0-hov trans-0-4">
 								
@@ -521,9 +520,7 @@ while ($fotoum = mysqli_fetch_assoc($queryFotoUm)) {
 			
 					</div>
 				</div>
-                      <!--   // vou usa aggrrrrr 
-						//
-						//
+                      <!--   // 
 						//-->
 				<div class="col-sm-6 col-md-8 col-lg-9 p-b-50">
 					<!--  -->
@@ -542,150 +539,23 @@ while ($fotoum = mysqli_fetch_assoc($queryFotoUm)) {
 							Showing 1–12 of 16 results
 						</span>
 					</div>
+					<div class="row" id="resultado">
 
 					<!-- Product -->
 					<?php
-           if (isset($_GET['pesquisa'])) {
-					$sqlPesquisa = "SELECT * FROM produto WHERE nome LIKE '%".$_GET['pesquisa']."%' ORDER BY nome ASC";
-					$queryPesquisa = mysqli_query($conexao,$sqlPesquisa);
-					while ($pro = mysqli_fetch_assoc($queryPesquisa)) {
-					echo '
-					<div class="row" style="height:500px">
-						<div class="col-sm-2.5">
-							<!-- Block2 -->
-							<div class="block2" style="width:300px; height:400px;">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<img style="width:300px; height:400px;" src="admin/dist/img/'.$pro['img'].'" alt="IMG-PRODUCT">
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Adicionar
-											</button>
-										</div>
-									</div>
-								</div>
-                              <center>
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.php?mostra='.$pro['idproduto'].'" class="block2-name dis-block s-text3 p-b-5">
-										'.$pro['nome'].'
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										preço:'.$pro['preco'].'
-									</span>
-								</div> </center>
-							</div>
-						</div>
-						</div>
-';
-}
-}
-if (isset($_GET['page'])) {
-$sql = "SELECT * FROM produto WHERE idproduto = idproduto";
- $query = mysqli_query($conexao, $sql);
-
- while ($dados = mysqli_fetch_assoc($query)) {
-
-
-					echo '
-					<div class="row" style="height:500px">
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-							<!-- Block2 -->
-							<div class="block2" style="width:300px; height:400px;">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<img style="width:300px; height:400px;" src="admin/dist/img/'.$dados['img'].'" alt="IMG-PRODUCT">
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Adicionar
-											</button>
-										</div>
-									</div>
-								</div>
-                              <center>
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.php?mostra='.$dados['idproduto'].'" class="block2-name dis-block s-text3 p-b-5">
-										'.$dados['nome'].'
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										preço:'.$dados['preco'].'
-									</span>
-								</div> </center>
-							</div>
-						</div>
-						</div>
-';
-}}
-
-
-
-
-if (isset($_GET['cat'])) {
-$sqlBuscaCat = "SELECT * FROM produto WHERE categoria = '".$_GET['cat']."'";
-$queryBuscaCat = mysqli_query($conexao, $sqlBuscaCat);
- while ($dado = mysqli_fetch_assoc($queryBuscaCat)) {
-            
-                
-					echo '
-					<div class="row">
-						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50" >
-							<!-- Block2 -->
-							<div class="block2" style="width:300px; height:400px;">
-								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-									<img style="width:300px; height:400px;" src="admin/dist/img/'.$dado['img'].'" alt="IMG-PRODUCT">
-
-									<div class="block2-overlay trans-0-4">
-										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-										</a>
-
-										<div class="block2-btn-addcart w-size1 trans-0-4">
-											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Adicionar
-											</button>
-										</div>
-									</div>
-								</div>
-                            <center>
-								<div class="block2-txt p-t-20">
-									<a href="product-detail.php?mostra='.$dado['idproduto'].'" class="block2-name dis-block s-text3 p-b-5">
-										'.$dado['nome'].'
-									</a>
-
-									<span class="block2-price m-text6 p-r-5">
-										preço:'.$dado['preco'].'
-									</span>
-								</div></center>
-							</div>
-						</div>
-						</div>
-';
-}}
+					include('mostra.php');
 						?>		
 
-
+</div>
 					<!-- Pagination -->
 					<div class="pagination flex-m flex-w p-t-26">
-						<a href="#" class="item-pagination flex-c-m trans-0-4 active-pagination">1</a>
-						<a href="#" class="item-pagination flex-c-m trans-0-4">2</a>
-					</div>
+				<?php
+				for ($i = 1; $i <= $numPaginas; $i++) {
+					echo'<a href="?pagination='.$i.'" class="item-pagination flex-c-m trans-0-4 active-pagination">'.$i.'</a>';
+					}
+								?>
+									</div>
+
 
 	</section>
 
@@ -753,7 +623,7 @@ while ($dado =  mysqli_fetch_assoc($queryC)){
 					</li>
 
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
+						<a href="#" class="s-text7" >
 							Contact Us
 						</a>
 					</li>
