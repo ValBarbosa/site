@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 26-Set-2018 às 02:50
+-- Generation Time: 02-Out-2018 às 16:21
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -43,7 +43,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`idadmin`, `nome`, `usuario`, `email`, `senha`, `image`, `nivel`) VALUES
-(1, 'val', 'val', 'val@gmail.com', 'val', NULL, '0');
+(1, 'val', 'val', 'val@gmail.com', 'val', 'avatar2.png', '0');
 
 -- --------------------------------------------------------
 
@@ -63,9 +63,9 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`idcategoria`, `idproduto`, `categoria`, `image`) VALUES
-(38, NULL, 'Infantil', 'a4df0f05.png'),
-(39, NULL, 'Feminino', 'a9aca348.jpg'),
-(40, NULL, 'Masculino', 'ae05cb4e.png');
+(51, NULL, 'Infantil', '940063001537982048.jpg'),
+(52, NULL, 'Feminino', '92123700 1537982057.png'),
+(53, NULL, 'Masculino', '0.16865600 1537982065.png');
 
 -- --------------------------------------------------------
 
@@ -221,6 +221,27 @@ INSERT INTO `tamanho` (`idtamanho`, `idproduto`, `tamanho`) VALUES
 (35, NULL, 'G'),
 (36, NULL, '10');
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(50) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(64) NOT NULL,
+  `img` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `user`
+--
+
+INSERT INTO `user` (`id`, `usuario`, `email`, `senha`, `img`) VALUES
+(1, 'val', 'valeriaana123@gmail.com', 'val', '28b3636a.jpg');
+
 --
 -- Indexes for dumped tables
 --
@@ -280,6 +301,12 @@ ALTER TABLE `tamanho`
   ADD KEY `Taman_idx` (`idproduto`);
 
 --
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -293,7 +320,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `categoria`
 --
 ALTER TABLE `categoria`
-  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idcategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `contato`
@@ -330,6 +357,12 @@ ALTER TABLE `produto`
 --
 ALTER TABLE `tamanho`
   MODIFY `idtamanho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables

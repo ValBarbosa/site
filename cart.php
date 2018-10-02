@@ -1,3 +1,8 @@
+<?php 
+session_start();
+include('admin/config.php');
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +89,7 @@
 							</li>
 
 							<li>
-								<a href="product.html">Shop</a>
+								<a href="product.php">Shop</a>
 							</li>
 
 							<li class="sale-noti">
@@ -120,71 +125,49 @@
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<span class="header-icons-noti">
+							<?php 
+							      echo count($_SESSION['carrinho']);
+							   ?>
+						</span>
 
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
+								<?php 
+								$total = 0;
+								foreach ($_SESSION['carrinho'] as $id => $qnt) {
+									$sqlM = "SELECT * FROM produto WHERE idproduto = '".$id."'";
+									$queryM = mysqli_query($conexao,$sqlM);
+									$prod = mysqli_fetch_assoc($queryM);
+									//var_dump($_SESSION['carrinho']);
+									echo '<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
+										<img src="admin/dist/img/'.$prod['img'].'" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
+											'.$prod['nome'].'
 										</a>
 
 										<span class="header-cart-item-info">
-											1 x $19.00
+											'.$qnt.'x'.$prod['preco'].'
 										</span>
 									</div>
-								</li>
+								</li>';
+								$total += $qnt * $prod['preco'];
 
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
+									
+								}
+								?>
 							</ul>
 
 							<div class="header-cart-total">
-								Total: $75.00
+								<?php echo $total  ?>
 							</div>
 
 							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
-									</a>
-								</div>
 
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
@@ -339,9 +322,9 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="index.html">Home</a>
+						<a href="index.php">Home</a>
 						<ul class="sub-menu">
-							<li><a href="index.html">Homepage V1</a></li>
+							<li><a href="index.php">Homepage V1</a></li>
 							<li><a href="home-02.html">Homepage V2</a></li>
 							<li><a href="home-03.html">Homepage V3</a></li>
 						</ul>
@@ -349,11 +332,11 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Shop</a>
+						<a href="product.php?page=todos">Shop</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.html">Sale</a>
+						<a href="product.php?page=todos">Sale</a>
 					</li>
 
 					<li class="item-menu-mobile">
@@ -369,7 +352,7 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="contact.html">Contact</a>
+						<a href="contact.php">Contact</a>
 					</li>
 				</ul>
 			</nav>
@@ -392,59 +375,47 @@
 					<table class="table-shopping-cart">
 						<tr class="table-head">
 							<th class="column-1"></th>
-							<th class="column-2">Product</th>
-							<th class="column-3">Price</th>
-							<th class="column-4 p-l-70">Quantity</th>
+							<th class="column-2">Produtos</th>
+							<th class="column-3">Preço</th>
+							<th class="column-4 p-l-70">Quantidade</th>
 							<th class="column-5">Total</th>
 						</tr>
 
-						<tr class="table-row">
+						<?php 
+								$total = 0;
+								foreach ($_SESSION['carrinho'] as $id => $qnt) {
+									$sqlM = "SELECT * FROM produto WHERE idproduto = '".$id."'";
+									$queryM = mysqli_query($conexao,$sqlM);
+									$prod = mysqli_fetch_assoc($queryM);
+									 $total = $qnt*$prod['preco'];
+
+									echo '<tr class="table-row">
 							<td class="column-1">
 								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="images/item-10.jpg" alt="IMG-PRODUCT">
+									<img src="admin/dist/img/'.$prod['img'].'" alt="IMG-PRODUCT">
 								</div>
 							</td>
-							<td class="column-2">Men Tshirt</td>
-							<td class="column-3">$36.00</td>
+							<td class="column-2">'.$prod['nome'].'</td>
+							<td class="column-3">R$'.$prod['preco'].'</td>
 							<td class="column-4">
 								<div class="flex-w bo5 of-hidden w-size17">
 									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 									</button>
 
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="1">
+									<input class="size8 m-text18 t-center num-product" type="number" name="num-product1" value="'.$qnt.'">
 
 									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
 										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 									</button>
 								</div>
 							</td>
-							<td class="column-5">$36.00</td>
-						</tr>
+							<td class="column-5">R$'.$total.'</td>
+						</tr>' ;
+					}
+?>
 
-						<tr class="table-row">
-							<td class="column-1">
-								<div class="cart-img-product b-rad-4 o-f-hidden">
-									<img src="images/item-05.jpg" alt="IMG-PRODUCT">
-								</div>
-							</td>
-							<td class="column-2">Mug Adventure</td>
-							<td class="column-3">$16.00</td>
-							<td class="column-4">
-								<div class="flex-w bo5 of-hidden w-size17">
-									<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
-									</button>
-
-									<input class="size8 m-text18 t-center num-product" type="number" name="num-product2" value="1">
-
-									<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
-										<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
-									</button>
-								</div>
-							</td>
-							<td class="column-5">$16.00</td>
-						</tr>
+						
 					</table>
 				</div>
 			</div>
@@ -465,9 +436,9 @@
 
 				<div class="size10 trans-0-4 m-t-10 m-b-10">
 					<!-- Button -->
-					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
-						Update Cart
-					</button>
+					<a href="cart.php" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+						Atualizar
+					</a>
 				</div>
 			</div>
 

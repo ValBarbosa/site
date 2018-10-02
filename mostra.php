@@ -6,6 +6,7 @@ include('admin/config.php');
     $sqlT = "SELECT * FROM produto";
     $queryT = mysqli_query($conexao,$sqlT);
     $total = mysqli_num_rows($queryT);
+    
     $numPaginas = ceil($total/$registro);
     $inicio = $pagina - 1;
     $inicio = ($inicio*$numPaginas);
@@ -32,9 +33,9 @@ include('admin/config.php');
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											<a href="?acao=add&id='.$pro['idproduto'].'&page=todos" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 												Adicionar
-											</button>
+											</a>
 										</div>
 									</div>
 								</div>
@@ -54,7 +55,7 @@ include('admin/config.php');
 }
 }
 if (isset($_GET['page'])) {
-$sql = "SELECT * FROM produto WHERE idproduto = idproduto LIMIT $inicio,$registro";
+$sql = "SELECT * FROM produto LIMIT $inicio, $registro";
  $query = mysqli_query($conexao, $sql);
 
  while ($dados = mysqli_fetch_assoc($query)) {
@@ -75,9 +76,9 @@ $sql = "SELECT * FROM produto WHERE idproduto = idproduto LIMIT $inicio,$registr
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											<a href="?acao=add&id='.$dados['idproduto'].'&page=todos" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 												Adicionar
-											</button>
+											</a>
 										</div>
 									</div>
 								</div>
@@ -120,9 +121,9 @@ $queryBuscaCat = mysqli_query($conexao, $sqlBuscaCat);
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											<a href="?acao=add&id='.$dado['idproduto'].'&cat='.$dado['categoria'].'" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 												Adicionar
-											</button>
+											</a>
 										</div>
 									</div>
 								</div>
