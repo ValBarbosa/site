@@ -1,5 +1,21 @@
 <?php include('admin/config.php'); 
-error_reporting(0);?>
+session_start();
+error_reporting(0);
+if (!isset($_SESSION['carrinho'])) {
+	$_SESSION['carrinho'] = array();	
+}
+if (isset($_GET['acao'])){
+	if ($_GET['acao'] == "add") {
+		if (!isset($_SESSION['carrinho'][$_GET['id']])) {
+			$_SESSION['carrinho'][$_GET['id']] = 1;
+			
+		}else{
+			$_SESSION['carrinho'][$_GET['id']] += 1;
+		}
+	}
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,69 +157,53 @@ error_reporting(0);?>
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<span class="header-icons-noti">
+							<?php 
+							      echo count($_SESSION['carrinho']);
+							   ?>
+						</span>
 
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
+								<?php 
+								$total = 0;
+								foreach ($_SESSION['carrinho'] as $id => $qnt) {
+									$sqlM = "SELECT * FROM produto WHERE idproduto = '".$id."'";
+									$queryM = mysqli_query($conexao,$sqlM);
+									$prod = mysqli_fetch_assoc($queryM);
+									//var_dump($_SESSION['carrinho']);
+									echo '<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
+										<img src="admin/dist/img/'.$prod['img'].'" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
+											'.$prod['nome'].'
 										</a>
 
 										<span class="header-cart-item-info">
-											1 x $19.00
+											'.$qnt.'x'.$prod['preco'].'
 										</span>
 									</div>
-								</li>
+								</li>';
+								$total += $qnt * $prod['preco'];
 
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
+									
+								}
+								?>
 							</ul>
 
 							<div class="header-cart-total">
-								Total: $75.00
+								<?php echo $total  ?>
 							</div>
 
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
+									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+										ver carrinho
 									</a>
 								</div>
 
@@ -551,7 +551,11 @@ error_reporting(0);?>
 					<div class="pagination flex-m flex-w p-t-26">
 				<?php
 				for ($i = 1; $i <= $numPaginas; $i++) {
-					echo'<a href="?pagination='.$i.'" class="item-pagination flex-c-m trans-0-4 active-pagination">'.$i.'</a>';
+					if ($_GET['pagination'] = $i) {
+						echo'<a href="?pagination='.$i.'&page=todos" class="item-pagination flex-c-m trans-0-4 ">'.$i.'</a>';
+					}else{
+					echo'<a href="?pagination='.$i.'&page=todos" class="item-pagination flex-c-m trans-0-4n  active-pagination">'.$i.'</a>';
+				}
 					}
 								?>
 									</div>
