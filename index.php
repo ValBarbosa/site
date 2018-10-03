@@ -18,6 +18,9 @@ if (isset($_GET['sair'])) {
   unlink($_SESSION['user']);
   header('location:login.php');
 }
+if (isset($_GET['cadastrar'])){
+  header('location:cadast.php');
+}
         
 
 ?>
@@ -103,29 +106,11 @@ if (isset($_GET['sair'])) {
 						<ul class="main_menu">
 							<li>
 								<a href="index.php">Home</a>
-								<ul class="sub_menu">
-									<li><a href="index.php">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
-								</ul>
 							</li>
 
 							<li>
 								<a href="product.php?page=todos">Shop</a>
 							</li>
-
-							<li class="sale-noti">
-								<a href="product.php?page=todos">Sale</a>
-							</li>
-
-							<li>
-								<a href="cart.html">Features</a>
-							</li>
-
-							<li>
-								<a href="blog.html">Blog</a>
-							</li>
-
 							<li>
 								<a href="about.html">About</a>
 							</li>
@@ -141,18 +126,20 @@ if (isset($_GET['sair'])) {
 				<div class="header-icons">
 			<li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		<img style="width: 30px; height: 30px; border-radius: 50%;" src="admin/dist/img/<?php echo $imgUser ?>" class="header-icon1" alt="ICON">
+		<img style="width: 30px; height: 30px; border-radius: 50%;" src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+		<label><?php echo $nome ?> </label>
 			</a>
             <ul class="dropdown-menu" style="width: 250px; margin:5px;">
                 <ul class="menu"><li class="user-header">
                 <p>
-                	<center>
+                <center>
                   <label>usuario: <?php echo $nome ?> </label>
                   <br>
                   <small>Email: <?php echo $email ?></small>
                   <br>
                   <br>
-                  <a href="?sair" class="btn btn-default ">Sair</a>
+                  <a href="?cadastrar" class="btn btn-default ">Cadastrar-se</a>
+                  <a href="?sair" class="btn btn-default ">Entrar</a>
               </center>
                 </p>
               </li>

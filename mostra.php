@@ -101,7 +101,7 @@ $sql = "SELECT * FROM produto LIMIT $inicio, $registro";
 
 
 if (isset($_GET['cat'])) {
-$sqlBuscaCat = "SELECT * FROM produto WHERE categoria = '".$_GET['cat']."'";
+$sqlBuscaCat = "SELECT * FROM produto WHERE categoria = '".$_GET['cat']."' LIMIT $inicio, $registro";
 $queryBuscaCat = mysqli_query($conexao, $sqlBuscaCat);
  while ($dado = mysqli_fetch_assoc($queryBuscaCat)) {
             

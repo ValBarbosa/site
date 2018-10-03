@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SOBRE</title>
+	<title>Home</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -25,7 +25,11 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
 <!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
@@ -47,18 +51,18 @@
 				</div>
 
 				<span class="topbar-child1">
-					Frete grátis para pedidos padrão acima de R$ 100,00
+					Feito para voce!
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						Seja bem vindo
 					</span>
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>BR</option>
-							<option>EUA</option>
+							<option>USD</option>
+							<option>EUR</option>
 						</select>
 					</div>
 				</div>
@@ -66,7 +70,7 @@
 
 			<div class="wrap_header">
 				<!-- Logo -->
-				<a href="index.php" class="logo">
+				<a href="index.html" class="logo">
 					<img src="images/icons/logo.png" alt="IMG-LOGO">
 				</a>
 
@@ -75,134 +79,53 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.php">HOME</a>
-								<ul class="sub_menu">
-									<li><a href="index.php">Homepage V1</a></li>
-									<li><a href="home-02.php">Homepage V2</a></li>
-									<li><a href="home-03.php">Homepage V3</a></li>
-								</ul>
+								<a href="index.php">Home</a>
 							</li>
 
 							<li>
-								<a href="product.php">LOJA</a>
+								<a href="product.php?page=todos">Shop</a>
 							</li>
-
-							<li class="sale-noti">
-								<a href="product.php">LIQUIDAÇÃO</a>
+							<li>
+								<a href="about.html">About</a>
 							</li>
 
 							<li>
-								<a href="cart.php">INFORMAÇÕES</a>
-							</li>
-
-							<li>
-								<a href="blog.php">BLOG</a>
-							</li>
-
-							<li>
-								<a href="about.php">SOBRE</a>
-							</li>
-
-							<li>
-								<a href="contact.php">CONTATO</a>
+								<a href="contact.php">Contact</a>
 							</li>
 						</ul>
 					</nav>
 				</div>
 
-				<!-- Header Icon -->
+				<!-- Heder Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
-
-					<span class="linedivide1"></span>
-
-					<div class="header-wrapicon2">
-						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
-
-						<!-- Header cart -->
-						<div class="header-cart header-dropdown">
-							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $19.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
-							</ul>
-
-							<div class="header-cart-total">
-								Total: $75.00
-							</div>
-
-							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										VER CARRINHO
-									</a>
-								</div>
-
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										CONFIRA
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			<li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		<img style="width: 30px; height: 30px; border-radius: 50%;" src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+		<label><?php echo $nome ?> </label>
+			</a>
+            <ul class="dropdown-menu" style="width: 250px; margin:5px;">
+                <ul class="menu"><li class="user-header">
+                <p>
+                <center>
+                  <label>usuario: <?php echo $nome ?> </label>
+                  <br>
+                  <small>Email: <?php echo $email ?></small>
+                  <br>
+                  <br>
+                  <a href="?cadastrar" class="btn btn-default ">Cadastrar-se</a>
+                  <a href="?sair" class="btn btn-default ">Entrar</a>
+              </center>
+                </p>
+              </li>
+                </ul>
+            </ul>
+          </li>
 		</div>
 
 		<!-- Header Mobile -->
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
-			<a href="index.php" class="logo-mobile">
+			<a href="index.html" class="logo-mobile">
 				<img src="images/icons/logo.png" alt="IMG-LOGO">
 			</a>
 
@@ -213,86 +136,6 @@
 					<a href="#" class="header-wrapicon1 dis-block">
 						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					</a>
-
-					<span class="linedivide2"></span>
-
-					<div class="header-wrapicon2">
-						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
-
-						<!-- Header cart noti -->
-						<div class="header-cart header-dropdown">
-							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $19.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
-							</ul>
-
-							<div class="header-cart-total">
-								Total: $75.00
-							</div>
-
-							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="cart.php" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										VER CARRINHO
-									</a>
-								</div>
-
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										CONFIRA
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 
 				<div class="btn-show-menu-mobile hamburger hamburger--squeeze">
@@ -309,22 +152,16 @@
 				<ul class="main-menu">
 					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 						<span class="topbar-child1">
-							Frete grátis para pedidos padrão acima de R$ 100,00
+							Feito para voce!
 						</span>
 					</li>
 
 					<li class="item-topbar-mobile p-l-20 p-t-8 p-b-8">
 						<div class="topbar-child2-mobile">
 							<span class="topbar-email">
-								fashe@example.com
+								Olá
 							</span>
 
-							<div class="topbar-language rs1-select2">
-								<select class="selection-1" name="time">
-									<option>BR</option>
-									<option>EUA</option>
-								</select>
-							</div>
 						</div>
 					</li>
 
@@ -339,82 +176,78 @@
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="index.php">HOME</a>
-						<ul class="sub-menu">
-							<li><a href="index.php">Homepage V1</a></li>
-							<li><a href="home-02.php">Homepage V2</a></li>
-							<li><a href="home-03.php">Homepage V3</a></li>
-						</ul>
+						<a href="index.php">Home</a>
 						<i class="arrow-main-menu fa fa-angle-right" aria-hidden="true"></i>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.php">LOJA</a>
+						<a href="product.php">Shop</a>
+					</li>
+
+					
+					<li class="item-menu-mobile">
+						<a href="about.html">About</a>
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="product.php">LIQUIDAÇÃO</a>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="cart.php">INFORMAÇÕES</a>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="blog.php">BLOG</a>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="about.php">SOBRE</a>
-					</li>
-
-					<li class="item-menu-mobile">
-						<a href="contact.php">CONTATO</a>
+						<a href="contact.php ?>">Contact</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 	</header>
+	<div class="row" style="margin:30px;">
+		<div class="col-md-4">
+		<form method="get" enctype="multipart/form-data">
+		  <fieldset>
+		  <div class="form-group">
+		   	<legend>Cadastro</legend>
+		  <div class="form-group">
+		    <label for="pwd">Usuario</label>
+		    <input type="text" class="form-control" id="pwd" name="user">
+		  </div>
+		  <div class="form-group">
+		    <label for="pwd">Email Valido</label>
+		    <input type="text" class="form-control" id="pwd" name="email">
+		  </div>
+		  <div class="form-group">
+		    <label for="pwd">Senha</label>
+		    <input type="password" class="form-control" id="pwd" name="pass">
+		  </div>
+		  <label>Foto</label>
+            <input type="file" name="arquivo" class="form-control-file" id="exampleFormControlFile1">
+          </div><br>
+		  <button type="submit" class="btn btn-primary form-control">Cadastrar</button><br>
+		  </fieldset>
+		</form>
+	</div>
+	<label class="col-md-4" style="text-align: center;padding-top:200px;">Ou</label>
+		<div class="col-md-4">
+		<form method="get" enctype="multipart/form-data">
+		  <fieldset>
+		  <div class="form-group">
+		   	<legend>Cadastro</legend>
+		  <div class="form-group">
+		    <label for="pwd">Usuario</label>
+		    <input type="text" class="form-control" id="pwd" name="user">
+		  </div>
+		  <div class="form-group">
+		    <label for="pwd">Email Valido</label>
+		    <input type="text" class="form-control" id="pwd" name="email">
+		  </div>
+		  <div class="form-group">
+		    <label for="pwd">Senha</label>
+		    <input type="password" class="form-control" id="pwd" name="pass">
+		  </div>
+		  <label>Foto</label>
+            <input type="file" name="arquivo" class="form-control-file" id="exampleFormControlFile1">
+          </div><br>
+		  <button type="submit" class="btn btn-primary form-control">Cadastrar</button><br></fieldset>
+		</form>
+	</div>
+	</div>		
+	
 
-	<!-- Title Page -->
-	<section class="bg-title-page p-t-40 p-b-50 flex-col-c-m" style="background-image: url(images/heading-pages-06.jpg);">
-		<h2 class="l-text2 t-center">
-			SOBRE
-		</h2>
-	</section>
-
-	<!-- content page -->
-	<section class="bgwhite p-t-66 p-b-38">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 p-b-30">
-					<div class="hov-img-zoom">
-						<img src="images/banner-14.jpg" alt="IMG-ABOUT">
-					</div>
-				</div>
-
-				<div class="col-md-8 p-b-30">
-					<h3 class="m-text26 p-t-15 p-b-16">
-					NOSSA HISTORIA
-					</h3>
-
-					<p class="p-b-28">
-						Phasellus egestas nisi nisi, lobortis ultricies risus semper nec. Vestibulum pharetra ac ante ut pellentesque. Curabitur fringilla dolor quis lorem accumsan, vitae molestie urna dapibus. Pellentesque porta est ac neque bibendum viverra. Vivamus lobortis magna ut interdum laoreet. Donec gravida lorem elit, quis condimentum ex semper sit amet. Fusce eget ligula magna. Aliquam aliquam imperdiet sodales. Ut fringilla turpis in vehicula vehicula. Pellentesque congue ac orci ut gravida. Aliquam erat volutpat. Donec iaculis lectus a arcu facilisis, eu sodales lectus sagittis. Etiam pellentesque, magna vel dictum rutrum, neque justo eleifend elit, vel tincidunt erat arcu ut sem. Sed rutrum, turpis ut commodo efficitur, quam velit convallis ipsum, et maximus enim ligula ac ligula. Vivamus tristique vulputate ultricies. Sed vitae ultrices orci.
-					</p>
-
-					<div class="bo13 p-l-29 m-l-9 p-b-10">
-						<p class="p-b-11">
-							Criatividade é apenas conectar as coisas. Quando você pergunta a pessoas criativas como elas fizeram algo, elas se sentem um pouco culpadas porque elas realmente não fizeram isso, elas apenas viram algo. Pareceu óbvio para eles depois de um tempo.
-						</p>
-
-						<span class="s-text7">
-							- Steve Job’s
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
 
 	<!-- Footer -->
@@ -422,12 +255,12 @@
 		<div class="flex-w p-b-90">
 			<div class="w-size6 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					ENTRAR EM CONTATO
+					GET IN TOUCH
 				</h4>
 
 				<div>
 					<p class="s-text7 w-size27">
-						Alguma pergunta? Deixe-nos saber,a loja está localizada no centro de Pereiro, ou ligue para (+55) 98140-8962
+						Any questions? Let us know in store at 8th floor, 379 Hudson St, New York, NY 10018 or call us on (+1) 96 716 6879
 					</p>
 
 					<div class="flex-m p-t-30">
@@ -442,31 +275,37 @@
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-				CATEGORIAS
+					Categories
+				</h4>
+			</div>
+
+			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
+				<h4 class="s-text12 p-b-30">
+					Links
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							MASCULINO
+							Search
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							FEMININO
+							About Us
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							VESTIDOS
+							Contact Us
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							ÓCULOS
+							Returns
 						</a>
 					</li>
 				</ul>
@@ -474,57 +313,25 @@
 
 			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
 				<h4 class="s-text12 p-b-30">
-					LINKS
+					Help
 				</h4>
 
 				<ul>
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							PESQUISA
+							Track Order
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							SOBRE NÓS
+							Returns
 						</a>
 					</li>
 
 					<li class="p-b-9">
 						<a href="#" class="s-text7">
-							NOSSO CONTATO
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							RETORNO
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<div class="w-size7 p-t-30 p-l-15 p-r-15 respon4">
-				<h4 class="s-text12 p-b-30">
-					ASSISTÊNCIA
-				</h4>
-
-				<ul>
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							PEDIDO
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							RETORNO
-						</a>
-					</li>
-
-					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							FROTA
+							Shipping
 						</a>
 					</li>
 
@@ -538,7 +345,7 @@
 
 			<div class="w-size8 p-t-30 p-l-15 p-r-15 respon3">
 				<h4 class="s-text12 p-b-30">
-					NOTÍCIAS
+					Newsletter
 				</h4>
 
 				<form>
@@ -550,7 +357,7 @@
 					<div class="w-size2 p-t-20">
 						<!-- Button -->
 						<button class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-							ENVIAR
+							Subscribe
 						</button>
 					</div>
 
@@ -580,7 +387,7 @@
 			</a>
 
 			<div class="t-center s-text8 p-t-20">
-				Copyright © 2018. All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+				Copyright © 2018 All rights reserved. | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
 			</div>
 		</div>
 	</footer>
@@ -594,9 +401,8 @@
 		</span>
 	</div>
 
-	<!-- Container Selection -->
+	<!-- Container Selection1 -->
 	<div id="dropDownSelect1"></div>
-	<div id="dropDownSelect2"></div>
 
 
 
@@ -614,12 +420,32 @@
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect1')
 		});
+	</script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/slick/slick.min.js"></script>
+	<script type="text/javascript" src="js/slick-custom.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/lightbox2/js/lightbox.min.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		$('.block2-btn-addcart').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to cart !", "success");
+			});
+		});
 
-		$(".selection-2").select2({
-			minimumResultsForSearch: 20,
-			dropdownParent: $('#dropDownSelect2')
+		$('.block2-btn-addwishlist').each(function(){
+			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
+			$(this).on('click', function(){
+				swal(nameProduct, "is added to wishlist !", "success");
+			});
 		});
 	</script>
+
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 

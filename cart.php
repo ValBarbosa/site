@@ -52,12 +52,12 @@ include('admin/config.php');
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Feito para voce!
 				</span>
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						fashe@example.com
+						Seja bem vindo
 					</span>
 
 					<div class="topbar-language rs1-select2">
@@ -80,28 +80,12 @@ include('admin/config.php');
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Home</a>
-								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
-								</ul>
+								<a href="index.php">Home</a>
+
 							</li>
 
 							<li>
-								<a href="product.php">Shop</a>
-							</li>
-
-							<li class="sale-noti">
-								<a href="product.html">Sale</a>
-							</li>
-
-							<li>
-								<a href="cart.html">Features</a>
-							</li>
-
-							<li>
-								<a href="blog.html">Blog</a>
+								<a href="product.php?page=todos">Shop</a>
 							</li>
 
 							<li>
@@ -117,11 +101,6 @@ include('admin/config.php');
 
 				<!-- Header Icon -->
 				<div class="header-icons">
-					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-					</a>
-
-					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
@@ -164,7 +143,7 @@ include('admin/config.php');
 							</ul>
 
 							<div class="header-cart-total">
-								<?php echo $total  ?>
+								<?php echo 'R$'.$total  ?>
 							</div>
 
 							<div class="header-cart-buttons">
@@ -383,8 +362,9 @@ include('admin/config.php');
 
 						<?php 
 								$total = 0;
-								foreach ($_SESSION['carrinho'] as $id => $qnt) {
-									$sqlM = "SELECT * FROM produto WHERE idproduto = '".$id."'";
+						foreach ($_SESSION['carrinho'] as $id => $qnt) {
+								
+					    $sqlM = "SELECT * FROM produto WHERE idproduto = '".$id."'";
 									$queryM = mysqli_query($conexao,$sqlM);
 									$prod = mysqli_fetch_assoc($queryM);
 									 $total = $qnt*$prod['preco'];
@@ -448,16 +428,7 @@ include('admin/config.php');
 					Cart Totals
 				</h5>
 
-				<!--  -->
-				<div class="flex-w flex-sb-m p-b-12">
-					<span class="s-text18 w-size19 w-full-sm">
-						Subtotal:
-					</span>
-
-					<span class="m-text21 w-size20 w-full-sm">
-						$39.00
-					</span>
-				</div>
+			
 
 				<!--  -->
 				<div class="flex-w flex-sb bo10 p-t-15 p-b-20">
@@ -466,29 +437,20 @@ include('admin/config.php');
 					</span>
 
 					<div class="w-size20 w-full-sm">
-						<p class="s-text8 p-b-23">
-							There are no shipping methods available. Please double check your address, or contact us if you need any help.
-						</p>
-
 						<span class="s-text19">
-							Calculate Shipping
+							<b>Calcular frete</b>
 						</span>
+						<form action="" method="post">
 
 						<div class="rs2-select2 rs3-select2 rs4-select2 bo4 of-hidden w-size21 m-t-8 m-b-12">
-							<select class="selection-2" name="country">
-								<option>Select a country...</option>
-								<option>US</option>
-								<option>UK</option>
-								<option>Japan</option>
+							<select class="selection-2" name="tipo" id="tipo">
+								<option value="04510">PAC.</option>
+								<option value="04014">SEDEX</option>
 							</select>
 						</div>
 
-						<div class="size13 bo4 m-b-12">
-						<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="state" placeholder="State /  country">
-						</div>
-
 						<div class="size13 bo4 m-b-22">
-							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="postcode" placeholder="Postcode / Zip">
+							<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="postcode" placeholder="CEP">
 						</div>
 
 						<div class="size14 trans-0-4 m-b-10">
@@ -496,19 +458,44 @@ include('admin/config.php');
 							<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
 								Update Totals
 							</button>
+					</form>
 						</div>
 					</div>
 				</div>
 
 				<!--  -->
 				<div class="flex-w flex-sb-m p-t-26 p-b-30">
-					<span class="m-text22 w-size19 w-full-sm">
-						Total:
+					<span id="dadosCorreios" class="m-text22 w-size19 w-full-sm">
+						<?php
+				if (isset($_POST['postcode']) && isset($_POST['tipo'])) {
+$url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=08082650&sDsSenha=564321&sCepOrigem=59920000&sCepDestino=".$_POST['postcode']."&nVlPeso=1&nCdFormato=1&nVlComprimento=20&nVlAltura=20&nVlLargura=20&sCdMaoPropria=n&nVlValorDeclarado=0&sCdAvisoRecebimento=n&nCdServico=".$_POST['tipo']."&nVlDiametro=0&StrRetorno=xml&nIndicaCalculo=3";
+           $xml = simplexml_load_file($url);
+           $dados =  $xml->cServico;
+
+           $valor = $dados->Valor;
+           $prazo = $dados->PrazoEntrega;
+
+           echo "<p><b>Valor:</b>R$ $valor </p><p><b> Prazo:</b> $prazo dias</p>";
+
+       }
+						  ?>
 					</span>
 
 					<span class="m-text21 w-size20 w-full-sm">
-						$39.00
-					</span>
+						<br>
+                       <?php 
+                        $sqlF = "SELECT * FROM produto WHERE idproduto = '".$id."'";
+								$queryF = mysqli_query($conexao,$sqlM);
+								$prodF = mysqli_fetch_assoc($queryM);
+
+						$totalF = $total+$valor;
+						echo '<br>
+						<br>';
+
+							echo 'Total da Compra: R$'.$totalF.'';
+
+                       ?>
+           					</span>
 				</div>
 
 				<div class="size15 trans-0-4">
