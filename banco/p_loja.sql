@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: 02-Out-2018 às 16:21
-=======
--- Generation Time: 02-Out-2018 às 15:21
->>>>>>> 3f2a39b73431bff1a028a5030f9620ab3553ad27
+-- Generation Time: 06-Out-2018 às 23:31
 -- Versão do servidor: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -144,7 +140,8 @@ INSERT INTO `img` (`idimg`, `idproduto`, `img1`, `img2`, `img3`) VALUES
 (61, 34, '98699564.jpg', 'c710890a.jpg', '0555015a.jpg'),
 (62, 35, 'bb9578c1.jpg', '521faebd.jpg', 'e80698f1.jpg'),
 (63, 36, 'c5047d81.jpg', 'aa46ad49.jpg', 'b26956cd.jpg'),
-(64, 37, 'f129cf05.jpg', '5a5da619.jpg', 'fdc67dac.jpg');
+(64, 37, 'f129cf05.jpg', '5a5da619.jpg', 'fdc67dac.jpg'),
+(65, 38, '9c449ba7.jpg', 'f0ce917d.jpg', 'df375e06');
 
 -- --------------------------------------------------------
 
@@ -199,7 +196,8 @@ INSERT INTO `produto` (`idproduto`, `idcategoria`, `nome`, `preco`, `descricao`,
 (34, NULL, 'Bermuda Esportiva', 130, 'Esportivo luxuoso', 3, 'Infantil', 'Cinza', '3', '98699564.jpg', NULL),
 (35, NULL, 'Polo esportiva', 100, 'Florada', 4, 'Masculino', 'Cinza', 'G', 'bb9578c1.jpg', NULL),
 (36, NULL, 'Social', 200, 'Alta qualidade', 10, 'Masculino', 'Vermelho', 'G', 'c5047d81.jpg', NULL),
-(37, NULL, 'CalÃ§a basica', 80, 'Basica', 14, 'Masculino', 'Preto', 'M', 'f129cf05.jpg', NULL);
+(37, NULL, 'CalÃ§a basica', 80, 'Basica', 14, 'Masculino', 'Preto', 'M', 'f129cf05.jpg', NULL),
+(38, NULL, 'Blusinha', 150, 'lindo', 4, 'Infantil', 'Branco', '3', '9c449ba7.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -232,19 +230,18 @@ INSERT INTO `tamanho` (`idtamanho`, `idproduto`, `tamanho`) VALUES
 --
 
 CREATE TABLE `user` (
-  `id` int(11) NOT NULL,
+  `cpf` int(100) NOT NULL,
   `usuario` varchar(50) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `senha` varchar(64) NOT NULL,
-  `img` varchar(100) NOT NULL
+  `senha` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `user`
 --
 
-INSERT INTO `user` (`id`, `usuario`, `email`, `senha`, `img`) VALUES
-(1, 'val', 'valeriaana123@gmail.com', 'val', '28b3636a.jpg');
+INSERT INTO `user` (`cpf`, `usuario`, `email`, `senha`) VALUES
+(23456789, 'nd', 'valeriaana123@gmail.com', 'nd');
 
 --
 -- Indexes for dumped tables
@@ -308,7 +305,7 @@ ALTER TABLE `tamanho`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`cpf`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -342,7 +339,7 @@ ALTER TABLE `cor`
 -- AUTO_INCREMENT for table `img`
 --
 ALTER TABLE `img`
-  MODIFY `idimg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `idimg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `notificacao`
@@ -354,19 +351,13 @@ ALTER TABLE `notificacao`
 -- AUTO_INCREMENT for table `produto`
 --
 ALTER TABLE `produto`
-  MODIFY `idproduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `idproduto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `tamanho`
 --
 ALTER TABLE `tamanho`
   MODIFY `idtamanho` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
