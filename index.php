@@ -1,28 +1,35 @@
 <?php
    require('config.php');
-   session_start();
+   error_reporting(0);
    if(isset($_SESSION['user'])){
  $sql = "SELECT * FROM user WHERE usuario ='".$_SESSION['user']."'";
  $query = mysqli_query($conexao, $sql);
 
  while ($dadosUser = mysqli_fetch_assoc($query)) {
    $nome = $dadosUser['usuario'];
-   $email = $dadosUser['email'];
-   $imgUser = $dadosUser['img'];
- }
-} else {
-  header('location:login.php');
-}
-if (isset($_GET['sair'])) {
+   $cpf = $dadosUser['cpf'];
+   $email = $dadosUser['email']; }
+}if (isset($_GET['sair'])) {
   session_destroy();
   unlink($_SESSION['user']);
-  header('location:login.php');
+  header('location:index.php');
 }
-if (isset($_GET['cadastrar'])){
-  header('location:cadast.php');
+if (isset($_GET['configuracao'])){
+  header('location:configuracao.php');
 }
-        
-
+if (!isset($_SESSION['carrinho'])) {
+	$_SESSION['carrinho'] = array();	
+}
+if (isset($_GET['acao'])){
+	if ($_GET['acao'] == "add") {
+		if (!isset($_SESSION['carrinho'][$_GET['id']])) {
+			$_SESSION['carrinho'][$_GET['id']] = 1;
+			
+		}else{
+			$_SESSION['carrinho'][$_GET['id']] += 1;
+		}
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,8 +94,7 @@ if (isset($_GET['cadastrar'])){
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option><a href="#" style="text-decoration: none;">Usuario</a></option>
 						</select>
 					</div>
 				</div>
@@ -125,105 +131,83 @@ if (isset($_GET['cadastrar'])){
 				<!-- Heder Icon -->
 				<div class="header-icons">
 			<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				<from method="get">
+				<?php 
+				if (isset($_SESSION['user'])){
+					echo '
+		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 		<img style="width: 30px; height: 30px; border-radius: 50%;" src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-		<label><?php echo $nome ?> </label>
+		<label>'.$nome.'</label>
 			</a>
             <ul class="dropdown-menu" style="width: 250px; margin:5px;">
                 <ul class="menu"><li class="user-header">
                 <p>
                 <center>
-                  <label>usuario: <?php echo $nome ?> </label>
+                  <label>usuario:'.$nome.'</label>
                   <br>
-                  <small>Email: <?php echo $email ?></small>
+                  <small>Email:'.$email.'</small>
                   <br>
                   <br>
-                  <a href="?cadastrar" class="btn btn-default ">Cadastrar-se</a>
-                  <a href="?sair" class="btn btn-default ">Entrar</a>
+                  <a href="configuracao.php?cpf='.$cpf.'" class="btn btn-default ">Configuração</a>
+                  <a href="?sair" class="btn btn-default ">Sair</a>
               </center>
-                </p>
+              </p>
               </li>
-                </ul>
-            </ul>
-          </li>
-
-
+              </ul>
+            </ul>';
+				}else{
+					echo '
+		<img style="width: 30px; height: 30px; border-radius: 50%;" src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+                  <a href="cadast.php" class="btn btn-default ">Cadastrar/Entrar</a>';
+				}
+            
+?>
+</from>
+</li>	
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
 						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
-						<span class="header-icons-noti">0</span>
+						<span class="header-icons-noti">
+							<?php 
+							      echo count($_SESSION['carrinho']);
+							   ?>
+						</span>
 
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
-								<li class="header-cart-item">
+								<?php 
+								$total = 0;
+								foreach ($_SESSION['carrinho'] as $id => $qnt) {
+									$sqlM = "SELECT * FROM produto WHERE idproduto = '".$id."'";
+									$queryM = mysqli_query($conexao,$sqlM);
+									$prod = mysqli_fetch_assoc($queryM);
+									//var_dump($_SESSION['carrinho']);
+									echo '<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
+										<img src="admin/dist/img/'.$prod['img'].'" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
-											White Shirt With Pleat Detail Back
+											'.$prod['nome'].'
 										</a>
 
 										<span class="header-cart-item-info">
-											1 x $19.00
+											'.$qnt.'x'.$prod['preco'].'
 										</span>
 									</div>
-								</li>
+								</li>';
+								$total += $qnt * $prod['preco'];
 
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Converse All Star Hi Black Canvas
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $39.00
-										</span>
-									</div>
-								</li>
-
-								<li class="header-cart-item">
-									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
-									</div>
-
-									<div class="header-cart-item-txt">
-										<a href="#" class="header-cart-item-name">
-											Nixon Porter Leather Watch In Tan
-										</a>
-
-										<span class="header-cart-item-info">
-											1 x $17.00
-										</span>
-									</div>
-								</li>
+									
+								}
+								?>
 							</ul>
 
 							<div class="header-cart-total">
-								Total: $75.00
-							</div>
-
-							<div class="header-cart-buttons">
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="cart.html" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										View Cart
-									</a>
-								</div>
-
-								<div class="header-cart-wrapbtn">
-									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
-										Check Out
-									</a>
-								</div>
+								<?php echo $total  ?>
 							</div>
 						</div>
 					</div>
@@ -353,7 +337,7 @@ if (isset($_GET['cadastrar'])){
 
 							<div class="topbar-language rs1-select2">
 								<select class="selection-1" name="time">
-									<option>USD</option>
+									<option><a href="#" style="text-decoration: none;"></a>Usuario</option>
 									<option>EUR</option>
 								</select>
 							</div>
@@ -477,94 +461,24 @@ if (isset($_GET['cadastrar'])){
 	<section class="banner bgwhite p-t-40 p-b-40">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-					<!-- block1 -->
+						<?php 
+					$Pesquisa = "SELECT * FROM produto LIMIT 0,6";
+					$Pesquisar = mysqli_query($conexao,$Pesquisa);
+					while ($pesquisaV = mysqli_fetch_assoc($Pesquisar)) {
+					echo '
+					<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
 					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-02.jpg" alt="IMG-BENNER">
+						<img src="admin/dist/img/'.$pesquisaV['img'].'" alt="IMG-BENNER">
 
 						<div class="block1-wrapbtn w-size2">
-							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								Dresses
+							<a href="product-detail.php?mostra='.$pesquisaV['idproduto'].'" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
+								Ver Produto
 							</a>
 						</div>
-					</div>
-
-					<!-- block1 -->
-					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-05.jpg" alt="IMG-BENNER">
-
-						<div class="block1-wrapbtn w-size2">
-							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								Sunglasses
-							</a>
 						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-					<!-- block1 -->
-					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-03.jpg" alt="IMG-BENNER">
-
-						<div class="block1-wrapbtn w-size2">
-							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								Watches
-							</a>
-						</div>
-					</div>
-
-					<!-- block1 -->
-					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-07.jpg" alt="IMG-BENNER">
-
-						<div class="block1-wrapbtn w-size2">
-							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								Footerwear
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-10 col-md-8 col-lg-4 m-l-r-auto">
-					<!-- block1 -->
-					<div class="block1 hov-img-zoom pos-relative m-b-30">
-						<img src="images/banner-04.jpg" alt="IMG-BENNER">
-
-						<div class="block1-wrapbtn w-size2">
-							<!-- Button -->
-							<a href="#" class="flex-c-m size2 m-text2 bg3 hov1 trans-0-4">
-								Bags
-							</a>
-						</div>
-					</div>
-
-					<!-- block2 -->
-					<div class="block2 wrap-pic-w pos-relative m-b-30">
-						<img src="images/icons/bg-01.jpg" alt="IMG">
-
-						<div class="block2-content sizefull ab-t-l flex-col-c-m">
-							<h4 class="m-text4 t-center w-size3 p-b-8">
-								Sign up & get 20% off
-							</h4>
-
-							<p class="t-center w-size4">
-								Be the frist to know about the latest fashion news and get exclu-sive offers
-							</p>
-
-							<div class="w-size2 p-t-25">
-								<!-- Button -->
-								<a href="#" class="flex-c-m size2 bg4 bo-rad-23 hov1 m-text3 trans-0-4">
-									Sign Up
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+				</div>';
+				}
+					?>
 		</div>
 	</section>
 
@@ -583,7 +497,9 @@ if (isset($_GET['cadastrar'])){
 
 					<div class="item-slick2 p-l-15 p-r-15">
 						<!-- Block2 -->
+
 						<div class="block2">
+
 							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
 								<img src="images/item-02.jpg" alt="IMG-PRODUCT">
 
@@ -611,251 +527,14 @@ if (isset($_GET['cadastrar'])){
 									$75.00
 								</span>
 							</div>
+
+
 						</div>
 					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/item-03.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Denim jacket blue
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$92.50
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/item-05.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Coach slim easton black
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$165.90
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="images/item-07.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Frayed denim shorts
-								</a>
-
-								<span class="block2-oldprice m-text7 p-r-5">
-									$29.50
-								</span>
-
-								<span class="block2-newprice m-text8 p-r-5">
-									$15.90
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="images/item-02.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Herschel supply co 25l
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$75.00
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/item-03.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Denim jacket blue
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$92.50
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative">
-								<img src="images/item-05.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Coach slim easton black
-								</a>
-
-								<span class="block2-price m-text6 p-r-5">
-									$165.90
-								</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="item-slick2 p-l-15 p-r-15">
-						<!-- Block2 -->
-						<div class="block2">
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelsale">
-								<img src="images/item-07.jpg" alt="IMG-PRODUCT">
-
-								<div class="block2-overlay trans-0-4">
-									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-										<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-										<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-									</a>
-
-									<div class="block2-btn-addcart w-size1 trans-0-4">
-										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Frayed denim shorts
-								</a>
-
-								<span class="block2-oldprice m-text7 p-r-5">
-									$29.50
-								</span>
-
-								<span class="block2-newprice m-text8 p-r-5">
-									$15.90
-								</span>
-							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-		</div>
 	</section>
 
 	<!-- Banner2 -->

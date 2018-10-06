@@ -1,6 +1,7 @@
 <?php 
 session_start();
 include('admin/config.php');
+error_reporting(0);
  ?>
 
 <!DOCTYPE html>
@@ -62,8 +63,7 @@ include('admin/config.php');
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option><a href="#" style="text-decoration: none;">Usuario</a></option>
 						</select>
 					</div>
 				</div>

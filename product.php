@@ -98,8 +98,7 @@ if (isset($_GET['acao'])){
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option><a href="#" style="text-decoration: none;">Usuario</a></option>
 						</select>
 					</div>
 				</div>
@@ -117,11 +116,13 @@ if (isset($_GET['acao'])){
 						<ul class="main_menu">
 							<li>
 								<a href="index.php">Home</a>
+		
 							</li>
 
 							<li>
 								<a href="product.php?page=todos">Shop</a>
 							</li>
+
 							<li>
 								<a href="about.html">About</a>
 							</li>
@@ -508,13 +509,21 @@ if (isset($_GET['acao'])){
 					<!--  -->
 					<div class="flex-sb-m flex-w p-b-35">
 						<div class="flex-w">
-							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
-								<select class="selection-2" name="sorting">
-									<option>Filtrar:</option>
-									<option >Menor valor para o maior</option>
-									<option >Maior valor para o menor</option>
-								</select>
-							</div>
+								<ul class="nav nav-tabs">
+							  
+							  	<li class="nav-item dropdown">
+							    	<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Filtrar:</a>
+							    <div class="dropdown-menu">
+
+							        <a class="dropdown-item" href="?filtroPreco=todos">Todos</a>
+							        <a class="dropdown-item" href="?filtroPreco=1">R$ 50.00 até R$ 100.00</a>
+							        <a class="dropdown-item" href="?filtroPreco=2">R$ 100.00 até R$ 200.00</a>
+							        <a class="dropdown-item" href="?filtroPreco=3">R$ 200.00 até R$ 300.00</a>
+							        <a class="dropdown-item" href="?filtroPreco=4">R$ 300.00 ou mais</a>
+							    
+							    </div>  
+							  	</li>
+							</ul>
 						</div>
 
 						<span class="s-text8 p-t-5 p-b-5">
@@ -525,6 +534,7 @@ if (isset($_GET['acao'])){
 
 					<!-- Product -->
 					<?php
+					
 					include('mostra.php');
 						?>		
 

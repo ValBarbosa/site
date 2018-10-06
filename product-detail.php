@@ -1,4 +1,5 @@
-<?php include('admin/config.php');  ?>
+<?php include('admin/config.php'); 
+error_reporting(0); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,8 +59,7 @@
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option><a href="#" style="text-decoration: none;">Usuario</a></option>
 						</select>
 					</div>
 				</div>
@@ -77,27 +77,11 @@
 						<ul class="main_menu">
 							<li>
 								<a href="index.php">Home</a>
-								<ul class="sub_menu">
-									<li><a href="index.php">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
-								</ul>
+								
 							</li>
 
 							<li>
 								<a href="product.php?page=todos">Shop</a>
-							</li>
-
-							<li class="sale-noti">
-								<a href="product.php?page=todos">Sale</a>
-							</li>
-
-							<li>
-								<a href="cart.html">Features</a>
-							</li>
-
-							<li>
-								<a href="blog.html">Blog</a>
 							</li>
 
 							<li>

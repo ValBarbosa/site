@@ -1,3 +1,35 @@
+<?php
+session_start();
+Include('admin/config.php');
+error_reporting(0);
+if(isset($_GET['userCa']) && isset($_GET['passCa']) && isset($_GET['cpfCa']) && isset($_GET['emailCa'])){
+
+	$sql = "INSERT INTO `user`(`id`, `usuario`, `email`, `senha`, `cpf`) VALUES ('".$_GET['cpfCa']."','".$_GET['userCa']."','".$_GET['emailCa']."','".$_GET['passCa']."')";
+		$query = mysqli_query($conexao, $sql);
+		if($query){
+			echo "<script> alert('Cadastrado')</script>";
+			header('location:cadast.php');
+
+		}else{
+			echo "<div id='alert' class='alert alert-danger'>Erro a Cadastrar</div>";
+		}
+	}
+if(isset($_GET['user']) && isset($_GET['pass'])){
+	$sqlVai = "SELECT * FROM user WHERE senha = '".$_GET['pass']."'";
+	$queryVai = mysqli_query($conexao,$sqlVai);
+
+	if(mysqli_num_rows($queryVai) > 0){
+			$_SESSION['user'] = $_GET['user'];
+			header('location:index.php');
+
+		}else{
+			echo "<div id='alert' class='alert alert-danger'>Erro ao Entrar</div>";
+		}
+	}
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,13 +88,13 @@
 
 				<div class="topbar-child2">
 					<span class="topbar-email">
-						Seja bem vindo
+						
 					</span>
 
 					<div class="topbar-language rs1-select2">
 						<select class="selection-1" name="time">
-							<option>USD</option>
-							<option>EUR</option>
+							<option><a href="#" style="text-decoration: none;">Usuario</a></option>
+
 						</select>
 					</div>
 				</div>
@@ -96,32 +128,7 @@
 					</nav>
 				</div>
 
-				<!-- Heder Icon -->
-				<div class="header-icons">
-			<li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		<img style="width: 30px; height: 30px; border-radius: 50%;" src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
-		<label><?php echo $nome ?> </label>
-			</a>
-            <ul class="dropdown-menu" style="width: 250px; margin:5px;">
-                <ul class="menu"><li class="user-header">
-                <p>
-                <center>
-                  <label>usuario: <?php echo $nome ?> </label>
-                  <br>
-                  <small>Email: <?php echo $email ?></small>
-                  <br>
-                  <br>
-                  <a href="?cadastrar" class="btn btn-default ">Cadastrar-se</a>
-                  <a href="?sair" class="btn btn-default ">Entrar</a>
-              </center>
-                </p>
-              </li>
-                </ul>
-            </ul>
-          </li>
-		</div>
-
+	
 		<!-- Header Mobile -->
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
@@ -204,45 +211,41 @@
 		   	<legend>Cadastro</legend>
 		  <div class="form-group">
 		    <label for="pwd">Usuario</label>
-		    <input type="text" class="form-control" id="pwd" name="user">
+		    <input type="text" class="form-control" id="disabledInput" name="userCa">
 		  </div>
 		  <div class="form-group">
 		    <label for="pwd">Email Valido</label>
-		    <input type="text" class="form-control" id="pwd" name="email">
+		    <input type="text" class="form-control" id="disabledInput" name="emailCa">
+		  </div>
+		  <div class="form-group">
+		    <label for="pwd">CPF</label>
+		    <input type="text" class="form-control" id="disabledInput" name="cpfCa">
 		  </div>
 		  <div class="form-group">
 		    <label for="pwd">Senha</label>
-		    <input type="password" class="form-control" id="pwd" name="pass">
+		    <input type="password" class="form-control" id="disabledInput" name="passCa">
 		  </div>
-		  <label>Foto</label>
-            <input type="file" name="arquivo" class="form-control-file" id="exampleFormControlFile1">
-          </div><br>
-		  <button type="submit" class="btn btn-primary form-control">Cadastrar</button><br>
+		 <button type="submit" class="btn btn-default form-control" style="background: black; color:white; border: ">Cadastrar</button><br>
+		</div>
 		  </fieldset>
 		</form>
 	</div>
-	<label class="col-md-4" style="text-align: center;padding-top:200px;">Ou</label>
+	<label class="col-md-4" style="text-align:center;padding-top:200px;">Ou</label>
 		<div class="col-md-4">
 		<form method="get" enctype="multipart/form-data">
 		  <fieldset>
 		  <div class="form-group">
-		   	<legend>Cadastro</legend>
+		   	<legend>Entrar</legend>
 		  <div class="form-group">
-		    <label for="pwd">Usuario</label>
-		    <input type="text" class="form-control" id="pwd" name="user">
+		    <label  for="inputSuccess1">Usuario</label>
+		    <input type="text" class="form-control" id="disabledInput" name="user">
 		  </div>
 		  <div class="form-group">
-		    <label for="pwd">Email Valido</label>
-		    <input type="text" class="form-control" id="pwd" name="email">
+		    <label for="inputSuccess1">Senha</label>
+		    <input type="password" class="form-control" id="disabledInput" name="pass">
 		  </div>
-		  <div class="form-group">
-		    <label for="pwd">Senha</label>
-		    <input type="password" class="form-control" id="pwd" name="pass">
-		  </div>
-		  <label>Foto</label>
-            <input type="file" name="arquivo" class="form-control-file" id="exampleFormControlFile1">
-          </div><br>
-		  <button type="submit" class="btn btn-primary form-control">Cadastrar</button><br></fieldset>
+		</div>
+		  <button type="submit" class="btn btn-default form-control" style="background: black; color:white; border: ">Cadastrar</button><br></fieldset>
 		</form>
 	</div>
 	</div>		
