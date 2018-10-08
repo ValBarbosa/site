@@ -6,9 +6,8 @@ while ($dadoU = mysqli_fetch_assoc($queryPe)) {
     $nome = $dadoU['usuario'];
     $email = $dadoU['email'];
     $senha = $dadoU['senha'];
-}
-if (isset($_GET['ed'])) {
-	$cpfU = $_GET['cpf'];
+} 
+    $cpfU = $_GET['cpf'];
 	$nomeU = $_GET['nome'];
 	$emailU = $_GET['email'];
 	$senhaU = $_GET['senha'];
@@ -20,8 +19,11 @@ $sql_up = "UPDATE user SET usuario='$nomeU', email='$emailU', senha='$senhaU' WH
 		    </script>";
 		        
 		}
-	}
+		else{
+			echo $query_up;
+		}
 		?>
+	
 
 <form class="leave-comment" method="get">
 	<div class="container">
@@ -50,6 +52,6 @@ $sql_up = "UPDATE user SET usuario='$nomeU', email='$emailU', senha='$senhaU' WH
 	</div>
 	</div>
 	</br>
-	<a href="?ed" name="ed" class="btn btn-success pull-right">Atualizar</a>
+	<a href="?acao=e" name="ed" class="btn btn-success pull-right">Atualizar</a>
 </div>
 </form> 

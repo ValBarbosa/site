@@ -1,6 +1,6 @@
 <?php include('admin/config.php'); 
 session_start();
-error_reporting(0);
+error_reporting();
 if (!isset($_SESSION['carrinho'])) {
 	$_SESSION['carrinho'] = array();	
 }
@@ -13,6 +13,9 @@ if (isset($_GET['acao'])){
 			$_SESSION['carrinho'][$_GET['id']] += 1;
 		}
 	}
+}if ($_GET['acao'] == "ex") {
+	unset($_SESSION['carrinho'][$_GET['id']]);
+	header('location:product.php?page=todos');
 }
 
 ?>
@@ -157,9 +160,10 @@ if (isset($_GET['acao'])){
 									$prod = mysqli_fetch_assoc($queryM);
 									//var_dump($_SESSION['carrinho']);
 									echo '<li class="header-cart-item">
-									<div class="header-cart-item-img">
+									<a href="?acao=ex&id='.$prod['idproduto'].'" >
+									<div class="header-cart-item-img" style="width:70px;height:90px;">
 										<img src="admin/dist/img/'.$prod['img'].'" alt="IMG">
-									</div>
+									</div> </a>
 
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">

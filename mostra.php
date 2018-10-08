@@ -1,6 +1,5 @@
 <?php
-error_reporting(0);
-include('admin/config.php');
+error_reporting();
 
     $pagina = isset($_GET['pagination'])?$_GET['pagination']:1;
     $registro = 6;
@@ -33,9 +32,9 @@ include('admin/config.php');
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											<a href="?page=todos&acao=add&id='.$pro['idproduto'].'"" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 												Adicionar
-											</button>
+											</a>
 										</div>
 									</div>
 								</div>
@@ -81,9 +80,9 @@ if (isset($_GET['filtroPreco'])) {
 
 									<div class="block2-btn-addcart w-size1 trans-0-4">
 										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+										<a href="?page=todos&acao=add&id='.$dadosP1['idproduto'].'" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 											Adicionar
-										</button>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -124,9 +123,9 @@ if (isset($_GET['filtroPreco'])) {
 
 									<div class="block2-btn-addcart w-size1 trans-0-4">
 										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+										<a href="?page=todos&acao=add&id='.$dadosP1['idproduto'].'" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 											Adicionar
-										</button>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -165,9 +164,9 @@ if (isset($_GET['filtroPreco'])) {
 
 									<div class="block2-btn-addcart w-size1 trans-0-4">
 										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+										<a href="?page=todos&acao=add&id='.$dadosP1['idproduto'].'" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 											Adicionar
-										</button>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -207,9 +206,9 @@ if (isset($_GET['filtroPreco'])) {
 
 									<div class="block2-btn-addcart w-size1 trans-0-4">
 										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+										<a href="?page=todos&acao=add&id='.$dadosP1['idproduto'].'" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 											Adicionar
-										</button>
+										</a>
 									</div>
 								</div>
 							</div>
@@ -255,9 +254,9 @@ $queryBuscaCat = mysqli_query($conexao, $sqlBuscaCat);
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											<a href="?page=todos&acao=add&id='.$dado['idproduto'].'" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 												Adicionar
-											</button>
+											</a>
 										</div>
 									</div>
 								</div>
@@ -296,9 +295,9 @@ $queryTodos = mysqli_query($conexao, $sqlTodos);
 
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
-											<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											<a href="?page=todos&acao=add&id='.$dados['idproduto'].'" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
 												Adicionar
-											</button>
+											</a>
 										</div>
 									</div>
 								</div>

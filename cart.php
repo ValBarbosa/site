@@ -2,6 +2,10 @@
 session_start();
 include('admin/config.php');
 error_reporting(0);
+if (isset($_GET['acao'])) {
+	unset($_SESSION['carrinho'][$_GET['id']]);
+	header('location:cart.php');
+}
  ?>
 
 <!DOCTYPE html>
@@ -113,6 +117,7 @@ error_reporting(0);
 						<!-- Header cart noti -->
 						<div class="header-cart header-dropdown">
 							<ul class="header-cart-wrapitem">
+								<form method="get">
 								<?php 
 								$total = 0;
 								foreach ($_SESSION['carrinho'] as $id => $qnt) {
@@ -121,9 +126,9 @@ error_reporting(0);
 									$prod = mysqli_fetch_assoc($queryM);
 									//var_dump($_SESSION['carrinho']);
 									echo '<li class="header-cart-item">
-									<div class="header-cart-item-img">
+									<a href="?acao=ex&id='.$prod['idproduto'].'" class="header-cart-item-img" >
 										<img src="admin/dist/img/'.$prod['img'].'" alt="IMG">
-									</div>
+									</a>
 
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
@@ -141,6 +146,7 @@ error_reporting(0);
 								}
 								?>
 							</ul>
+						</form>
 
 							<div class="header-cart-total">
 								<?php echo 'R$'.$total  ?>
@@ -351,6 +357,7 @@ error_reporting(0);
 			<!-- Cart item -->
 			<div class="container-table-cart pos-relative">
 				<div class="wrap-table-shopping-cart bgwhite">
+					<form method="get">
 					<table class="table-shopping-cart">
 						<tr class="table-head">
 							<th class="column-1"></th>
@@ -359,6 +366,7 @@ error_reporting(0);
 							<th class="column-4 p-l-70">Quantidade</th>
 							<th class="column-5">Total</th>
 						</tr>
+
 
 						<?php 
 								$total = 0;
@@ -371,9 +379,11 @@ error_reporting(0);
 
 									echo '<tr class="table-row">
 							<td class="column-1">
+								<a href="?acao=ex&id='.$prod['idproduto'].'" >
 								<div class="cart-img-product b-rad-4 o-f-hidden">
 									<img src="admin/dist/img/'.$prod['img'].'" alt="IMG-PRODUCT">
-								</div>
+									</div>
+								</a>
 							</td>
 							<td class="column-2">'.$prod['nome'].'</td>
 							<td class="column-3">R$'.$prod['preco'].'</td>
@@ -397,6 +407,7 @@ error_reporting(0);
 
 						
 					</table>
+				</form>
 				</div>
 			</div>
 

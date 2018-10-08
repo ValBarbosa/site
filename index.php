@@ -1,5 +1,6 @@
 <?php
    require('config.php');
+   session_start();
    error_reporting(0);
    if(isset($_SESSION['user'])){
  $sql = "SELECT * FROM user WHERE usuario ='".$_SESSION['user']."'";
@@ -16,12 +17,10 @@
 }
 if (isset($_GET['configuracao'])){
   header('location:configuracao.php');
-}
-if (!isset($_SESSION['carrinho'])) {
-	$_SESSION['carrinho'] = array();	
-}
-if (isset($_GET['acao'])){
-	if ($_GET['acao'] == "add") {
+}if ($_GET['acao'] == "ex") {
+	unset($_SESSION['carrinho'][$_GET['id']]);
+	header('location:index.php');
+}if ($_GET['acao'] == "add") {
 		if (!isset($_SESSION['carrinho'][$_GET['id']])) {
 			$_SESSION['carrinho'][$_GET['id']] = 1;
 			
@@ -29,7 +28,6 @@ if (isset($_GET['acao'])){
 			$_SESSION['carrinho'][$_GET['id']] += 1;
 		}
 	}
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -185,10 +183,11 @@ if (isset($_GET['acao'])){
 									$prod = mysqli_fetch_assoc($queryM);
 									//var_dump($_SESSION['carrinho']);
 									echo '<li class="header-cart-item">
+									<a href="?acao=ex&id='.$prod['idproduto'].'">
 									<div class="header-cart-item-img">
 										<img src="admin/dist/img/'.$prod['img'].'" alt="IMG">
 									</div>
-
+                                   </a>
 									<div class="header-cart-item-txt">
 										<a href="#" class="header-cart-item-name">
 											'.$prod['nome'].'
@@ -494,14 +493,15 @@ if (isset($_GET['acao'])){
 			<!-- Slide2 -->
 			<div class="wrap-slick2">
 				<div class="slick2">
-
-					<div class="item-slick2 p-l-15 p-r-15">
 						<!-- Block2 -->
-
-						<div class="block2">
-
-							<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-								<img src="images/item-02.jpg" alt="IMG-PRODUCT">
+<?php 
+     $sqlMais = "SELECT * FROM produto LIMIT 6,12";
+     $queryMais = mysqli_query($conexao,$sqlMais);
+     while ($mais = mysqli_fetch_assoc($queryMais)) {
+     echo '	<div class="item-slick2 p-l-15 p-r-15">
+     <div class="block2">
+	<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+								<img src="admin/dist/img/'.$mais['img'].'" alt="IMG-PRODUCT">
 
 								<div class="block2-overlay trans-0-4">
 									<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
@@ -511,26 +511,29 @@ if (isset($_GET['acao'])){
 
 									<div class="block2-btn-addcart w-size1 trans-0-4">
 										<!-- Button -->
-										<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-											Add to Cart
-										</button>
+										<a href="?page=todos&acao=add&id='.$mais['idproduto'].'"" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+											Adicionar
+										</a>
 									</div>
 								</div>
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="product-detail.html" class="block2-name dis-block s-text3 p-b-5">
-									Herschel supply co 25l
+								<a href="product-detail.php?mostra='.$mais['idproduto'].'" class="block2-name dis-block s-text3 p-b-5">
+									'.$mais['nome'].'
 								</a>
 
 								<span class="block2-price m-text6 p-r-5">
-									$75.00
+									R$'.$mais['preco'].'
 								</span>
 							</div>
 
 
 						</div>
-					</div>
+						</div>';
+         
+     }
+						?>
 						</div>
 					</div>
 				</div>
@@ -1055,14 +1058,14 @@ if (isset($_GET['acao'])){
 		$('.block2-btn-addcart').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to cart !", "success");
+				swal(nameProduct, "Adicionado ao carrinho!", "success");
 			});
 		});
 
 		$('.block2-btn-addwishlist').each(function(){
 			var nameProduct = $(this).parent().parent().parent().find('.block2-name').html();
 			$(this).on('click', function(){
-				swal(nameProduct, "is added to wishlist !", "success");
+				swal(nameProduct, "Adicionado ao carrinho!", "success");
 			});
 		});
 	</script>
