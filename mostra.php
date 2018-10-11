@@ -1,5 +1,5 @@
 <?php
-error_reporting();
+error_reporting(0);
 
     $pagina = isset($_GET['pagination'])?$_GET['pagination']:1;
     $registro = 6;

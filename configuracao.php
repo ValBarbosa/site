@@ -93,7 +93,7 @@ if (isset($_GET['sair'])){
 								<a href="product.php?page=todos">Shop</a>
 							</li>
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>
@@ -168,7 +168,7 @@ if (isset($_GET['sair'])){
 
 					
 					<li class="item-menu-mobile">
-						<a href="about.html">About</a>
+						<a href="about.php">About</a>
 					</li>
 
 					<li class="item-menu-mobile">

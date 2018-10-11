@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 $sqlPe = "SELECT * FROM user WHERE usuario = '".$_SESSION['user']."'";
 $queryPe = mysqli_query($conexao,$sqlPe);
 while ($dadoU = mysqli_fetch_assoc($queryPe)) {
@@ -13,15 +14,6 @@ while ($dadoU = mysqli_fetch_assoc($queryPe)) {
 	$senhaU = $_GET['senha'];
 $sql_up = "UPDATE user SET usuario='$nomeU', email='$emailU', senha='$senhaU' WHERE cpf = '$cpfU'";
 		$query_up = mysqli_query($conexao, $sql_up);
- 		if ($query_up) {
- 			echo "<script>
-				alert('Atualizado com sucesso');
-		    </script>";
-		        
-		}
-		else{
-			echo $query_up;
-		}
 		?>
 	
 

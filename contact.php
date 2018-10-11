@@ -123,7 +123,7 @@ if ($query) {
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>
@@ -386,7 +386,7 @@ if ($query) {
 					</li>
 
 					<li class="item-menu-mobile">
-						<a href="about.html">About</a>
+						<a href="about.php">About</a>
 					</li>
 
 					<li class="item-menu-mobile">

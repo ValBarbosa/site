@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 								$total = 0;
 						foreach ($_SESSION['carrinho'] as $id => $qnt) {
 								

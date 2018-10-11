@@ -118,7 +118,7 @@ if(isset($_GET['user']) && isset($_GET['pass'])){
 								<a href="product.php?page=todos">Shop</a>
 							</li>
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>

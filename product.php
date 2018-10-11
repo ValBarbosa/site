@@ -1,6 +1,6 @@
 <?php include('admin/config.php'); 
 session_start();
-error_reporting();
+error_reporting(0);
 if (!isset($_SESSION['carrinho'])) {
 	$_SESSION['carrinho'] = array();	
 }
@@ -127,7 +127,7 @@ if (isset($_GET['acao'])){
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>

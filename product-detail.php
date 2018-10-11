@@ -85,7 +85,7 @@ error_reporting(0); ?>
 							</li>
 
 							<li>
-								<a href="about.html">About</a>
+								<a href="about.php">About</a>
 							</li>
 
 							<li>
